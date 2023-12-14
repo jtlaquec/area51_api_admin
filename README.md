@@ -1,3 +1,22 @@
+## Pasos para ejecutar el API y el Módulo Administrativo
+
+**1.- Crear una base de datos** usar como nombre "ecommerce"
+
+**2.- Configurar el acceso a la base de datos desde el archivo .env** (por si usaste otro nombre para la base de datos"
+
+    DB_DATABASE="nombre de tu base de datos"
+
+**3.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando para crear las tablas y triggers en la base de datos:**
+
+    php artisan migrate:refresh --seed
+    
+**4.- Si hay algún error, ejecutar lo siguiente:** (Solo si te sale algún error al hacer la migración)
+   
+    composer update
+
+Si aún persiste el error, descargar Composer y volver a ejecutar el paso 3
+- [Instalador de Composer](https://getcomposer.org/download/).
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
