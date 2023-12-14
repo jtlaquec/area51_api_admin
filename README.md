@@ -1,4 +1,4 @@
-## Pasos para ejecutar el API
+## Pasos para ejecutar el API y el Módulo Administrativo
 
 **1.- Crear una base de datos** usar como nombre "ecommerce"
 
