@@ -6,12 +6,14 @@
 
     DB_DATABASE="nombre de tu base de datos"
 
-**3.- Desde la terminal de VSCode del proyecto ejecutar los siguientes comandos:**
+**3.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando:**
 
     composer update
-    
-    php artisan migrate:refresh --seed
 
+**4.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando que crea las tablas y agrega datos a la base de datos:**
+
+    php artisan migrate:refresh --seed
+    
 Si hay algún error, descargar Composer y volver a ejecutar el paso 3
 - [Instalador de Composer](https://getcomposer.org/download/).
 
