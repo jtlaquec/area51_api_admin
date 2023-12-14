@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Api\CustomerResource;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -36,11 +37,15 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|string|min:6',
             ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 422);
+            }
 
             $user = User::create([
                 'name' => $request->input('name'),
@@ -51,8 +56,6 @@ class CustomerController extends Controller
 
             $message = 'Cliente creado con éxito.';
             return response()->json(['data' => new CustomerResource($user), 'message' => $message], 201); // 201 Created
-        } catch (ValidationException $e) {
-            return response()->json(['error' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error interno del servidor.'], 500);
         }
@@ -61,11 +64,15 @@ class CustomerController extends Controller
     public function update(Request $request, User $user)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'name' => 'nullable|string|max:255',
                 'email' => 'nullable|email|unique:users,email,' . $user->id,
                 'password' => 'nullable|string|min:6',
             ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 422);
+            }
 
             $user->fill($request->only(['name', 'email']));
 
@@ -79,8 +86,6 @@ class CustomerController extends Controller
             return response()->json(['data' => new CustomerResource($user), 'message' => $message], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Cliente no encontrado'], 404);
-        } catch (ValidationException $e) {
-            return response()->json(['error' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error interno del servidor.'], 500);
         }
@@ -103,21 +108,27 @@ class CustomerController extends Controller
     }
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::where('email', $request->input('email'))->first();
-
-        if ($user->status != 1) {
-            return response()->json(['success' => false, 'error' => 'El cliente fue desactivado.'], 401);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => $validator->errors()], 422);
         }
+
+        $user = User::where('email', $request->input('email'))->first();
 
         if (!$user) {
             return response()->json(['success' => false, 'error' => 'Credenciales no válidas.'], 401);
         }
 
+        // Verificamos si el usuario está activo
+        if ($user->status != 1) {
+            return response()->json(['success' => false, 'error' => 'El usuario fue desactivado.'], 401);
+        }
+
+        // Verificamos la contraseña
         if (!Hash::check($request->input('password'), $user->password)) {
             return response()->json(['success' => false, 'error' => 'La contraseña no es válida.'], 401);
         }
