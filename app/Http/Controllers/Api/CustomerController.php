@@ -123,9 +123,9 @@ class CustomerController extends Controller
             return response()->json(['success' => false, 'error' => 'Credenciales no válidas.'], 401);
         }
 
-        // Verificamos si el usuario está activo
+        // Verificamos si el cliente está activo
         if ($user->status != 1) {
-            return response()->json(['success' => false, 'error' => 'El usuario fue desactivado.'], 401);
+            return response()->json(['success' => false, 'error' => 'El cliente fue desactivado.'], 401);
         }
 
         // Verificamos la contraseña
