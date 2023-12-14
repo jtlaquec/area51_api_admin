@@ -6,15 +6,13 @@
 
     DB_DATABASE="nombre de tu base de datos"
 
-**3.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando para crear las tablas y triggers en la base de datos:**
+**3.- Desde la terminal de VSCode del proyecto ejecutar los siguientes comandos:**
 
-    php artisan migrate:refresh --seed
-    
-**4.- Si hay algún error, ejecutar lo siguiente:** (Solo si te sale algún error al hacer la migración)
-   
     composer update
+    
+    php artisan migrate:refresh --seed
 
-Si aún persiste el error, descargar Composer y volver a ejecutar el paso 3
+Si hay algún error, descargar Composer y volver a ejecutar el paso 3
 - [Instalador de Composer](https://getcomposer.org/download/).
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
