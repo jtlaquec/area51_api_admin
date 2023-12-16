@@ -8,11 +8,11 @@
 
 No olvides poner el usuario y la contraseña de tu base de datos en el archivo .env (DB_USERNAME y DB_PASSWORD)
 
-**3.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando:**
+**3.- Desde la terminal de VSCode (raíz del proyecto) ejecutar el siguiente comando:**
 
     composer install
 
-**4.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando:**
+**4.- Desde la terminal de VSCode (raíz del proyecto) ejecutar el siguiente comando:**
 
     composer update
 
