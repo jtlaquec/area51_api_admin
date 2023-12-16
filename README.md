@@ -24,7 +24,7 @@ Si hay algún error, contactar con el desarrollador.
 
 ## Pasos para ejecutar Módulo Administrativo
 
-Tener instalado [Node.js](https://nodejs.org/en)
+Tener instalado [Node.js](https://nodejs.org/en) - Versión usada: 20.10.0 LTS
 
 **1.- Desde la terminal de VSCode (raíz del proyecto) ejecutar el siguiente comando:**
 
