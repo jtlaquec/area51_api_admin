@@ -1,6 +1,6 @@
 ## Pasos para ejecutar el API
 
-**1.- Crear una base de datos** usar como nombre "ecommerce"
+**1.- Crear una base de datos** (de preferencia usar como nombre "ecommerce")
 
 **2.- Configurar el acceso a la base de datos desde el archivo .env** (por si usaste otro nombre para la base de datos"
 
