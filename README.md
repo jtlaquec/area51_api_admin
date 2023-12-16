@@ -1,4 +1,4 @@
-## Pasos para ejecutar el API y el Módulo Administrativo
+## Pasos para ejecutar el API
 
 **1.- Crear una base de datos** usar como nombre "ecommerce"
 
@@ -20,8 +20,19 @@ No olvides poner el usuario y la contraseña de tu base de datos en el archivo .
 
     php artisan migrate:refresh --seed
     
-Si hay algún error, descargar Composer y volver a ejecutar el paso 3
-- [Instalador de Composer](https://getcomposer.org/download/).
+Si hay algún error, contactar con el desarrollador.
+
+## Pasos para ejecutar Módulo Administrativo
+
+Tener instalado Node js
+
+**1.- Desde la terminal de VSCode (raíz del proyecto) ejecutar el siguiente comando:**
+
+    npm install
+
+**2.- Desde la terminal de VSCode (raíz del proyecto) ejecutar el siguiente comando:**
+
+    npm run dev
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
