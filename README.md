@@ -8,9 +8,13 @@
 
 **3.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando:**
 
+    composer install
+
+**4.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando:**
+
     composer update
 
-**4.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando que crea las tablas y agrega datos a la base de datos:**
+**5.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando que crea las tablas y agrega datos a la base de datos:**
 
     php artisan migrate:refresh --seed
     
