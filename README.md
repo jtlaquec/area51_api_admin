@@ -6,7 +6,7 @@
 
     DB_DATABASE="nombre de tu base de datos"
 
-No olvides poner el usuario y la contraseña de tu base de datos en el archivo .env
+No olvides poner el usuario y la contraseña de tu base de datos en el archivo .env (DB_USERNAME y DB_PASSWORD)
 
 **3.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando:**
 
