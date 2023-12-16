@@ -2,9 +2,11 @@
 
 **1.- Crear una base de datos** (de preferencia usar como nombre "ecommerce")
 
-**2.- Configurar el acceso a la base de datos desde el archivo .env** (por si usaste otro nombre para la base de datos"
+**2.- Configurar el acceso a la base de datos desde el archivo .env** (modificar la configuración según tu base de datos)
 
-    DB_DATABASE="nombre de tu base de datos"
+    DB_DATABASE=NOMBRE DE TU BASE DE DATOS
+    DB_USERNAME=USUARIO
+    DB_PASSWORD=CONTRASEÑA
 
 No olvides poner el usuario y la contraseña de tu base de datos en el archivo .env (DB_USERNAME y DB_PASSWORD)
 
