@@ -20,7 +20,7 @@
 
     php artisan migrate:refresh --seed
     
-Si hay algún error, contactar con el Chavito.
+Si hay algún error, contactar con Xavier.
 
 ## Pasos para ejecutar Módulo Administrativo
 
