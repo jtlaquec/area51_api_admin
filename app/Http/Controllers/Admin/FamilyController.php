@@ -39,7 +39,7 @@ class FamilyController extends Controller
 
         session()->flash('swal', [
             'icon' => 'success',
-            'title' => 'Bien hecho',
+            'title' => '¡Bien hecho!',
             'text' => 'Familia creada correctamente.',
         ]);
 
@@ -75,7 +75,7 @@ class FamilyController extends Controller
 
         session()->flash('swal', [
             'icon' => 'success',
-            'title' => 'Bien hecho',
+            'title' => '¡Bien hecho!',
             'text' => 'Familia actualizada correctamente.',
         ]);
 

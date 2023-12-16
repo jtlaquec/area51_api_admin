@@ -16,6 +16,9 @@
 
         <form action="{{ route('admin.families.store') }}" method="POST">
             @csrf
+            <x-validation-errors class="mb-4">
+            </x-validation-errors>
+
             <div class ="mb-4">
                 <x-label class="mb-2">
                     Nombre
