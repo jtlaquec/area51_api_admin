@@ -13,6 +13,7 @@ class SubcategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'link' => url('api/store/subcategory/' . $this->id),
             'products' => ProductResource::collection($this->whenLoaded('products')),
         ];
     }
