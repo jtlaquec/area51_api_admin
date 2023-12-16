@@ -20,7 +20,7 @@ No olvides poner el usuario y la contraseña de tu base de datos en el archivo .
 
     php artisan migrate:refresh --seed
     
-Si hay algún error, contactar con el desarrollador.
+Si hay algún error, contactar con el Chavito.
 
 ## Pasos para ejecutar Módulo Administrativo
 
