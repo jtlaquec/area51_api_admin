@@ -24,15 +24,15 @@ class ProductFactory extends Factory
         $subcategory = Subcategory::inRandomOrder()->first();
         $randomNumber = $this->faker->numberBetween(1, 12);
         $imageName = $randomNumber . '.jpg';
-        $imagePath = 'productos/' . $imageName;
+        $imagePath = 'products/' . $imageName;
 
 
         return [
-            'sku' => 'SKU-' . $this->faker->unique()->numberBetween(1000, 9999),
-            'name' => $subcategory->name . ' ' . $this->faker->word,
-            'description' => $this->faker->paragraph,
+            'sku' => $this->faker->unique()->numberBetween(100000, 999999),
+            'name' => $subcategory->name . ' ' . $this->faker->sentence(),
+            'description' => $this->faker->text(200),
             'image_path' => url(Storage::url($imagePath)),
-            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'price' => $this->faker->randomFloat(2, 1, 1000),
             'subcategory_id' => $subcategory->id,
         ];
     }

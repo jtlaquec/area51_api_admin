@@ -13,7 +13,7 @@
 
                 </x-label>
 
-                <x-select class="w-full" wire:model.live="subcategory.family_id">
+                <x-select class="w-full" wire:model.live="subcategoryEdit.family_id">
 
                     <option value="" disabled>
                         Seleccione una familia
@@ -39,7 +39,7 @@
 
                 </x-label>
 
-                <x-select name="category_id" class="w-full" wire:model.live="subcategory.category_id">
+                <x-select name="category_id" class="w-full" wire:model.live="subcategoryEdit.category_id">
 
                     <option value="" disabled>
                         Seleccione una categoría
@@ -63,22 +63,57 @@
                 </x-label>
                 <x-input class="w-full"
                 placeholder="Ingrese el nombre de la subcategoría"
-                wire:model="subcategory.name">
+                wire:model="subcategoryEdit.name">
 
                 </x-input>
             </div>
 
             <div class ="flex justify-end">
-                <x-button>
-                    Guardar
+
+                <x-danger-button onclick="confirmDelete()">
+                    Eliminar
+                </x-danger-button>
+
+
+                <x-button class="ml-2">
+                    Actualizar
                 </x-button>
             </div>
         </div>
 
     </form>
 
-    @dump($subcategory)
+    {{-- @dump($subcategoryEdit) --}}
 
+    <form action="{{ route('admin.subcategories.destroy', $subcategory) }}" method="POST" id="delete-form">
+        @csrf
+        @method('DELETE')
+    </form>
+
+
+    @push('js')
+    <script>
+        function confirmDelete() {
+            /* document.getElementById('delete-form').submit(); */
+
+            Swal.fire({
+                title: "¿Estas seguro?",
+                text: "¡No podrás revertir esto!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "¡Sí, borralo!",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form').submit();
+                }
+            });
+
+        }
+    </script>
+@endpush
 
 
 </div>
