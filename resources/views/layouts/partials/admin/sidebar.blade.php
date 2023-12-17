@@ -17,10 +17,18 @@
 
         [
             //Familia de categorias
-            'name' => 'Categorias',
+            'name' => 'Categorías',
             'icon' => 'fa-solid fa-tags',
             'route' => route('admin.categories.index'),
             'active' => request()->routeIs('admin.categories.*')
+        ],
+
+        [
+            //Familia de subcategorías
+            'name' => 'Subcategorías',
+            'icon' => 'fa-solid fa-tag',
+            'route' => route('admin.subcategories.index'),
+            'active' => request()->routeIs('admin.subcategories.*')
         ],
 
 

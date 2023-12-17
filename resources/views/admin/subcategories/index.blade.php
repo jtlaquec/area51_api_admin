@@ -4,17 +4,17 @@
         'route' => route('admin.dashboard'),
     ],
     [
-        'name' => 'Categorías',
+        'name' => 'Subcategorías',
     ],
 ]">
 
 <x-slot name="action">
-    <a class="btn btn-blue" href="{{ route('admin.categories.create') }}">
+    <a class="btn btn-blue" href="{{ route('admin.subcategories.create') }}">
         Nuevo
     </a>
 </x-slot>
 
-@if ($categories->count())
+@if ($subcategories->count())
 
 <div class="relative overflow-x-auto">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -27,6 +27,9 @@
                     Nombre
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Categoría
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Familia
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -36,20 +39,23 @@
         </thead>
         <tbody>
 
-            @foreach ($categories as $category)
+            @foreach ($subcategories as $subcategory)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row"
                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $category->id }}
+                        {{ $subcategory->id }}
                     </th>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $category->name }}
+                        {{ $subcategory->name }}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $category->family->name }}
+                        {{ $subcategory->category->name }}
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ $subcategory->category->family->name }}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="{{ route('admin.categories.edit', $category) }}">
+                        <a href="{{ route('admin.subcategories.edit', $subcategory) }}">
                             Editar
                         </a>
                     </td>
@@ -70,7 +76,7 @@
     </svg>
     <span class="sr-only">Info</span>
     <div>
-        <span class="font-medium">Info alert!</span> Todavia no hay categorías de productos registradas
+        <span class="font-medium">Info alert!</span> Todavia no hay subcategorías de productos registradas
     </div>
 </div>
 
@@ -78,7 +84,8 @@
 @endif
 
 <div class = "mt-4">
-    {{ $categories->links() }}
+    {{ $subcategories->links() }}
 </div>
+
 
 </x-admin-layout>

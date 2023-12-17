@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StoreController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
 
 /*
@@ -32,5 +33,7 @@ Route::prefix('customers')->group(function () {
     Route::put('/{user}', [CustomerController::class, 'update']);
     Route::delete('/{user}', [CustomerController::class, 'destroy']);
 });
+
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::post('/login', [CustomerController::class, 'login']);

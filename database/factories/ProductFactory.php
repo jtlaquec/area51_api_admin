@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use App\Models\Subcategory;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,11 +22,16 @@ class ProductFactory extends Factory
     public function definition()
     {
         $subcategory = Subcategory::inRandomOrder()->first();
+        $randomNumber = $this->faker->numberBetween(1, 12);
+        $imageName = $randomNumber . '.jpg';
+        $imagePath = 'productos/' . $imageName;
+
+
         return [
             'sku' => 'SKU-' . $this->faker->unique()->numberBetween(1000, 9999),
             'name' => $subcategory->name . ' ' . $this->faker->word,
             'description' => $this->faker->paragraph,
-            'image_path' => 'path/to/image.jpg',
+            'image_path' => url(Storage::url($imagePath)),
             'price' => $this->faker->randomFloat(2, 10, 1000),
             'subcategory_id' => $subcategory->id,
         ];

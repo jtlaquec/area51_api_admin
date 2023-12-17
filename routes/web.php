@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    /* return view('admin.dashboard'); */
 });
 
 Route::middleware([
@@ -23,7 +24,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        /* return view('dashboard'); */
+        return view('admin.dashboard');
     })->name('dashboard');
 
 
