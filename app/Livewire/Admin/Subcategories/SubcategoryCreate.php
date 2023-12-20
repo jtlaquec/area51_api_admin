@@ -26,9 +26,9 @@ class SubcategoryCreate extends Component
 
     //Para cambiar la categoría despues de cambiar familia
     //Sintaxis con mayúscula
-    public function updatedSubcategoryFamilyId()
+
+    public function updatedSubcategoryFamilyId($value)
     {
-        /* dd('Cambio'); */
         $this->subcategory['category_id'] = '';
     }
 

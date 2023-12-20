@@ -20,7 +20,7 @@
                     </option>
 
                     @foreach ($families as $family)
-                        <option value ="{{ $family->id }}">
+                        <option value="{{ $family->id }}">
                             {{ $family->name }}
                         </option>
                     @endforeach
@@ -39,7 +39,7 @@
 
                 </x-label>
 
-                <x-select name="category_id" class="w-full" wire:model.live="subcategory.category_id">
+                <x-select class="w-full" wire:model.live="subcategory.category_id">
 
                     <option value="" disabled>
                         Seleccione una categoría
@@ -47,7 +47,8 @@
 
 
                     @foreach ($this->categories as $category)
-                        <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                        {{-- <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)> --}}
+                        <option value="{{ $category->id }}">
                             {{ $category->name }}
                         </option>
                     @endforeach

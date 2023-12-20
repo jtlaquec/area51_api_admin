@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductDetailsResource extends JsonResource
@@ -20,7 +21,7 @@ class ProductDetailsResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
-            'image_path' => $this->image_path,
+            'image_path' => Storage::url($this->image_path),
         ];
     }
 }

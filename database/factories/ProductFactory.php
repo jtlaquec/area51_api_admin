@@ -31,7 +31,7 @@ class ProductFactory extends Factory
             'sku' => $this->faker->unique()->numberBetween(100000, 999999),
             'name' => $subcategory->name . ' ' . $this->faker->sentence(),
             'description' => $this->faker->text(200),
-            'image_path' => url(Storage::url($imagePath)),
+            'image_path' => $imagePath,
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'subcategory_id' => $subcategory->id,
         ];
