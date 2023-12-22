@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Family;
+use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\FamilyResource;
+use App\Http\Resources\Api\ProductResource;
 use App\Http\Resources\Api\SubcategoryResource;
 
 class StoreController extends Controller
 {
-/*     public function __construct()
+    /*     public function __construct()
     {
         $this->middleware('auth:api')->except(['index', 'productosPorSubcategoria']);
     } */
@@ -36,4 +38,28 @@ class StoreController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        try {
+            $filters = $request->input('filters', []);
+            $orderBy = $request->input('orderBy', 'id');
+            $orderDirection = $request->input('orderDirection', 'asc');
+
+            $query = Product::query();
+
+            // Aplicamos los filtros
+            foreach ($filters as $field => $value) {
+                $query->where($field, 'like', '%' . $value . '%');
+            }
+
+            // Ordenamos el query
+            $query->orderBy($orderBy, $orderDirection);
+
+            $products = $query->get();
+
+            return ProductResource::collection($products);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al buscar productos. Detalles: ' . $e->getMessage()], 500);
+        }
+    }
 }

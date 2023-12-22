@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/store', [StoreController::class, 'index']);
 Route::get('/store/subcategory/{subcategory}', [StoreController::class, 'productosPorSubcategoria']);
-
+Route::get('/store/search', [StoreController::class, 'search']);
 
 Route::prefix('customers')->group(function () {
     Route::get('/', [CustomerController::class, 'index']);

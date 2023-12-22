@@ -8,6 +8,14 @@
         ],
 
         [
+            //Opciones
+            'name' => 'Opciones',
+            'icon' => 'fa-solid fa-cog',
+            'route' => route('admin.options.index'),
+            'active' => request()->routeIs('admin.options.*')
+        ],
+
+        [
             //Familia de productos
             'name' => 'Familias',
             'icon' => 'fa-solid fa-box-open',
@@ -38,6 +46,8 @@
             'route' => route('admin.products.index'),
             'active' => request()->routeIs('admin.products.*')
         ],
+
+
 
 
     ];

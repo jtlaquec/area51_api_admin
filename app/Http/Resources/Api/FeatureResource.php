@@ -3,10 +3,9 @@
 namespace App\Http\Resources\Api;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductDetailsResource extends JsonResource
+class FeatureResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +16,8 @@ class ProductDetailsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'sku' => $this->sku,
-            'name' => $this->name,
+            'value' => $this->value,
             'description' => $this->description,
-            'price' => $this->price,
-            'image_path' => Storage::url($this->image_path),
-            'options' => OptionResource::collection($this->options),
         ];
     }
 }
