@@ -14,13 +14,16 @@ class Option extends Model
         'type',
     ];
 
-    public function products(){
+    public function products()
+    {
         return $this->belongsToMany(Product::class)
-            ->withPivot('value')
+            ->using(OptionProduct::class)
+            ->withPivot('features')
             ->withTimestamps();
     }
 
-    public function features(){
+    public function features()
+    {
         return $this->hasmany(Feature::class);
     }
 }

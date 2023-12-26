@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('option_product', function (Blueprint $table) {
             $table->id();
             $table->foreignId('option_id')
-            ->constrained();
+                ->constrained();
             $table->foreignId('product_id')
-            ->constrained();
-            $table->string('value');
+                ->constrained();
+            $table->json('features');
             $table->timestamps();
         });
     }
