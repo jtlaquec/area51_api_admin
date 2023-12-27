@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\ProductController;
@@ -19,3 +20,5 @@ Route::resource('families', FamilyController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('subcategories', SubcategoryController::class);
 Route::resource('products', ProductController::class);
+
+Route::resource('users', UserController::class);

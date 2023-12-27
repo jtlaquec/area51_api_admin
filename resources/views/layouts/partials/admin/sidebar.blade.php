@@ -47,6 +47,14 @@
             'active' => request()->routeIs('admin.products.*')
         ],
 
+        [
+            //Familia de usuarios
+            'name' => 'Usuarios',
+            'icon' => 'fa-solid fa-box',
+            'route' => route('admin.users.index'),
+            'active' => request()->routeIs('admin.users.*')
+        ],
+
 
 
 
