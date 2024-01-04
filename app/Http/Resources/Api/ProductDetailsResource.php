@@ -28,6 +28,7 @@ class ProductDetailsResource extends JsonResource
                                 'has_discount' => $variant->has_discount,
                                 'percentage_discount' => $variant->percentage_discount,
                                 'discount_price' => $variant->discount_price,
+                                'link' => url('api/variants/' . $this->id),
                                 'images' => ImageResource::collection($variant->images),
 
                             ];
