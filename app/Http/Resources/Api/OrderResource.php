@@ -23,6 +23,7 @@ class OrderResource extends JsonResource
             'state_id' => $this->state_id,
             'reason' => $this->reason,
             'shipping_address' => $this->shipping_address,
+            'state' => new StateResource($this->state),
             'order_details' => OrderDetailsResource::collection($this->whenLoaded('order_details')),
         ];
     }
