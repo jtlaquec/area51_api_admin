@@ -37,5 +37,11 @@ class Product extends Model
         return $this->hasmany(ProductVariant::class);
     }
 
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class, 'product_variants', 'product_id', 'color_id')
+                    ->distinct();
+    }
+
 
 }

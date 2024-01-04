@@ -17,6 +17,12 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'image_path' => Storage::url($this->image_path),
             'link' => url('api/products/' . $this->id),
+            'colors' => $this->whenLoaded('colors') ? $this->colors->map(function($color) {
+                return [
+                    'value' => $color->value,
+                    'description' => $color->description
+                ];
+            }) : [],
         ];
     }
 }

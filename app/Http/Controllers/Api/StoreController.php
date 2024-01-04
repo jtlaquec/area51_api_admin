@@ -35,7 +35,7 @@ class StoreController extends Controller
     public function productosPorSubcategoria(Request $request, $subcategoriaId)
     {
         try {
-            $subcategoria = Subcategory::with('products')->findOrFail($subcategoriaId);
+            $subcategoria = Subcategory::with('products.colors')->findOrFail($subcategoriaId);
             return SubcategoryResource::make($subcategoria);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al obtener datos de subcategoría. Detalles: ' . $e->getMessage()], 500);
