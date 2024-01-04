@@ -57,7 +57,7 @@ class OrderController extends Controller
                 'total' => $total,
                 'state_id' => 1,
                 'reason' => "Por la compra según Boleta de Venta N°... (falta)",
-                'shipping_address' => $validatedData['shipping_address'] ?? 'Recojo en tienda',
+                'shipping_address' => 'Recojo en tienda',
             ]);
 
             // Agregamos los detalles de la orden
@@ -91,7 +91,6 @@ class OrderController extends Controller
             'items.*.product_variant_id' => 'required|exists:product_variants,id',
             'items.*.price' => 'required|numeric',
             'items.*.quantity' => 'required|numeric|min:1',
-            'shipping_address' => 'sometimes|string'
         ]);
     }
 

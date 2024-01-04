@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->foreignId('subcategory_id')
             ->constrained();
-            $table->decimal('percentage_discount', 5, 2)->nullable();
+            $table->integer('percentage_discount')->nullable();
             $table->boolean('has_discount')->default(false);
             $table->timestamps();
         });

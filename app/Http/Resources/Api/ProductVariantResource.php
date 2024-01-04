@@ -20,8 +20,8 @@ class ProductVariantResource extends JsonResource
             'name' => $this->name,
             'stock' => $this->stock,
             'price' => $this->price,
-            'has_discount' => $this->has_discount,
-            'percentage_discount' => $this->percentage_discount,
+/*             'has_discount' => $this->has_discount,
+            'percentage_discount' => $this->percentage_discount, */
             'discount_price' => $this->discount_price,
             'link' => url('api/variants/' . $this->id),
             'product_link' => url('api/products/' . $this->product_id),

@@ -30,7 +30,7 @@ class StateSeeder extends Seeder
                 'name' => 'Entregado',
             ],
             [
-                'name' => 'Devolución',
+                'name' => 'Devuelto',
             ],
 
 
