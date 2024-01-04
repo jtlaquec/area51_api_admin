@@ -12,7 +12,6 @@ class ProductVariantController extends Controller
     public function show(ProductVariant $variant)
     {
         try {
-            // Suponiendo que 'color' y 'size' son relaciones en tu modelo ProductVariant.
             $variant = ProductVariant::with(['color', 'size' ,'images'])
                                     ->findOrFail($variant->id);
 

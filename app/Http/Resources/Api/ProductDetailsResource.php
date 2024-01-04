@@ -20,7 +20,7 @@ class ProductDetailsResource extends JsonResource
                         $size = $variantsBySize->first()->size;
                         $variants = $variantsBySize->map(function ($variant) {
                             return [
-                                //Campos de variante de producto
+                                //Campos de la variante de producto
                                 'id' => $variant->id,
                                 'name' => $variant->name,
                                 'stock' => $variant->stock,

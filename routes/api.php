@@ -44,7 +44,7 @@ Route::prefix('customers')->group(function () {
     Route::put('/{user}', [CustomerController::class, 'update']);
     Route::delete('/{user}', [CustomerController::class, 'destroy']);
 });
-
+// Rutas de Productos y Variantes
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/variants/{variant}', [ProductVariantController::class, 'show'])->name('variants.show');
 
