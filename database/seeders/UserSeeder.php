@@ -15,33 +15,70 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $users = [
+
             [
                 'name' => 'Alexander Gabriel Cairo Flores',
                 'email' => 'alexander@gmail.com',
                 'password' => Hash::make('12345678'),
+                'district_id' => 230101,
+                'phone' => '957034285',
+                'birth_date' => '2001-01-01',
+                'document' => '57034285',
+                'address' => 'La Molina',
             ],
             [
                 'name' => 'Grober Glenn Quispe Aguilar',
                 'email' => 'grober@gmail.com',
                 'password' => Hash::make('12345678'),
+                'district_id' => 230101,
+                'phone' => '921323101',
+                'birth_date' => '2001-01-01',
+                'document' => '21323101',
+                'address' => 'San Juan de Lurigancho',
             ],
 
             [
                 'name' => 'Xavier Anthony Ale Ninaja',
                 'email' => 'xavier@gmail.com',
                 'password' => Hash::make('12345678'),
+                'district_id' => 230101,
+                'phone' => '938566913',
+                'birth_date' => '2001-01-01',
+                'document' => '38566913',
+                'address' => 'Viñani - entrada nomas',
             ],
 
             [
                 'name' => 'Felix Fernando Quispe Sentecala',
                 'email' => 'felix@gmail.com',
                 'password' => Hash::make('12345678'),
+                'district_id' => 230101,
+                'phone' => '927917164',
+                'birth_date' => '2001-01-01',
+                'document' => '27917164',
+                'address' => 'El Callao',
             ],
 
             [
                 'name' => 'Julián Thomy Laque Cauna',
                 'email' => 'julian@gmail.com',
                 'password' => Hash::make('12345678'),
+                'district_id' => 230101,
+                'phone' => '969853571',
+                'birth_date' => '2001-01-01',
+                'document' => '69853571',
+                'address' => 'Tacna',
+            ],
+
+            [
+                'name' => 'Cliente',
+                'email' => 'cliente@gmail.com',
+                'password' => Hash::make('12345678'),
+                'district_id' => 230101,
+                'phone' => '931451245',
+                'birth_date' => '2001-01-01',
+                'document' => '75010101',
+                'address' => 'av. siempre viva 123',
             ],
 
         ];

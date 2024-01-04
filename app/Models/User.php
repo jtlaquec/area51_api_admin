@@ -27,6 +27,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'address',
+        'document',
+        'birth_date',
+        'district_id',
         'status',
     ];
 
@@ -59,4 +64,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function district(){
+        return $this->belongsTo(District::class);
+    }
 }

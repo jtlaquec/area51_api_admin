@@ -41,8 +41,12 @@ class CustomerController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|string|min:6',
+                'district_id' => 'required|exists:districts,id',
+                'phone' => 'required|string',
+                'birth_date' => 'required|date',
+                'document' => 'required|string',
+                'address' => 'nullable|string',
             ]);
-
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 422);
             }
@@ -52,6 +56,11 @@ class CustomerController extends Controller
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'status' => 1,
+                'district_id' => $request->input('district_id'),
+                'phone' => $request->input('phone'),
+                'birth_date' => $request->input('birth_date'),
+                'document' => $request->input('document'),
+                'address' => $request->input('address'),
             ]);
 
             $message = 'Cliente creado con éxito.';
@@ -65,16 +74,21 @@ class CustomerController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'name' => 'nullable|string|max:255',
-                'email' => 'nullable|email|unique:users,email,' . $user->id,
-                'password' => 'nullable|string|min:6',
+                'name' => 'sometimes|string|max:255',
+                'email' => 'sometimes|email|unique:users,email,' . $user->id,
+                'password' => 'sometimes|string|min:6',
+                'district_id' => 'sometimes|exists:districts,id',
+                'phone' => 'sometimes|string',
+                'birth_date' => 'sometimes|date',
+                'document' => 'sometimes|string',
+                'address' => 'sometimes|string',
             ]);
 
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 422);
             }
 
-            $user->fill($request->only(['name', 'email']));
+            $user->fill($request->only(['name', 'email', 'district_id', 'phone', 'birth_date', 'document', 'address']));
 
             if ($request->filled('password')) {
                 $user->password = Hash::make($request->input('password'));

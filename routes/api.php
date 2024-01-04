@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StoreController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/store', [StoreController::class, 'index']);
 Route::get('/store/subcategory/{subcategory}', [StoreController::class, 'productosPorSubcategoria']);
 Route::get('/store/search', [StoreController::class, 'search']);
+Route::get('/store/colors', [StoreController::class, 'listarColores']);
+Route::get('/store/sizes', [StoreController::class, 'listarTallas']);
+
+Route::get('/departments', [LocationController::class, 'listarDepartamentos']);
+Route::get('/provinces', [LocationController::class, 'listarProvincias']);
+Route::get('/districts', [LocationController::class, 'listarDistritos']);
+Route::get('/departments/{department}/provinces', [LocationController::class, 'listarProvinciasPorDepartamento']);
+Route::get('/provinces/{province}/districts', [LocationController::class, 'listarDistritosPorProvincia']);
 
 Route::prefix('customers')->group(function () {
     Route::get('/', [CustomerController::class, 'index']);
