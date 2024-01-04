@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\StoreController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
@@ -49,3 +50,14 @@ Route::get('/products/{product}', [ProductController::class, 'show'])->name('pro
 Route::get('/variants/{variant}', [ProductVariantController::class, 'show'])->name('variants.show');
 
 Route::post('/login', [CustomerController::class, 'login']);
+
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index']);
+    Route::get('/{order}', [OrderController::class, 'show']);
+    Route::post('/', [OrderController::class, 'store']);
+    Route::put('/{order}', [OrderController::class, 'update']);
+    Route::delete('/{order}', [OrderController::class, 'destroy']);
+});
+
+
+Route::get('/orders/customer/{userId}', [OrderController::class, 'listarOrdenesPorCliente']);

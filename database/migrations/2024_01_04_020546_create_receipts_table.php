@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
             $table->string('number')->nullable();
+            $table->foreignId('serie_id')->constrained();
             $table->timestamps();
         });
     }

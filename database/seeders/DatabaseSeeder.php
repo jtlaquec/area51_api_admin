@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             OptionSeeder::class,
             ColorSeeder::class,
             SizeSeeder::class,
+            StateSeeder::class,
 
         ]);
 

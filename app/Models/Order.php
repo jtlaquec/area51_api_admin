@@ -8,4 +8,29 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'datetime',
+        'total',
+        'reason',
+        'shipping_address',
+        'state_id',
+        'user_id',
+/*         'receipt_id',
+        'comment_id',
+        'payment_id', */
+
+    ];
+
+    public function state(){
+        return $this->belongsTo(State::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function order_details(){
+        return $this->hasmany(OrderDetail::class);
+    }
 }

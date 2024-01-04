@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('product_variant_id')->constrained();
+            $table->decimal('price', 8, 2)->default(0);
+            $table->integer('quantity')->default(0);
             $table->timestamps();
         });
     }
