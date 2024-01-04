@@ -26,6 +26,9 @@ class ProductFactory extends Factory
         $imageName = $randomNumber . '.jpg';
         $imagePath = 'products/' . $imageName;
 
+        $hasDiscount = $this->faker->boolean();
+        $percentageDiscount = $hasDiscount ? $this->faker->numberBetween(10, 90) : 0;
+
         $productDetails = [
             'Características' => 'Car1',
             'Tipo de tela' => 'Car2',
@@ -46,6 +49,8 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'subcategory_id' => $subcategory->id,
             'product_details' => json_encode($productDetails, JSON_UNESCAPED_UNICODE),
+            'has_discount' => $hasDiscount,
+            'percentage_discount' => $percentageDiscount,
         ];
     }
 }

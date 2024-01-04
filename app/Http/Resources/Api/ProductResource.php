@@ -15,6 +15,8 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'brand' => $this->brand,
             'price' => $this->price,
+            'has_discount' => $this->has_discount,
+            'percentage_discount' => $this->percentage_discount,
             'image_path' => Storage::url($this->image_path),
             'link' => url('api/products/' . $this->id),
             'colors' => $this->whenLoaded('colors') ? $this->colors->map(function($color) {

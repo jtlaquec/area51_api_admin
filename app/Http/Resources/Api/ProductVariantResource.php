@@ -14,6 +14,18 @@ class ProductVariantResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            //Campos de la variante de producto
+            'id' => $this->id,
+            'name' => $this->name,
+            'stock' => $this->stock,
+            'price' => $this->price,
+            'has_discount' => $this->has_discount,
+            'percentage_discount' => $this->percentage_discount,
+            'discount_price' => $this->discount_price,
+            'link' => url('api/variants/' . $this->id),
+            'images' => ImageResource::collection($this->images),
+
+        ];
     }
 }

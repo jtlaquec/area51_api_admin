@@ -57,6 +57,8 @@ class ProductDetailsResource extends JsonResource
             'brand' => $this->brand,
             'description' => $this->description,
             'price' => $this->price,
+            'has_discount' => $this->has_discount,
+            'percentage_discount' => $this->percentage_discount,
             'image_path' => Storage::url($this->image_path),
             'product_details' => $this->product_details,
             'colors' => $variantsGroupedByColor,
