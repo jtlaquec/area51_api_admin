@@ -24,8 +24,10 @@ class ProductVariantResource extends JsonResource
             'percentage_discount' => $this->percentage_discount,
             'discount_price' => $this->discount_price,
             'link' => url('api/variants/' . $this->id),
+            'product_link' => url('api/products/' . $this->product_id),
+            'color' => new ColorResource($this->color),
+            'size' => new SizeResource($this->size),
             'images' => ImageResource::collection($this->images),
-
         ];
     }
 }
