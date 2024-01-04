@@ -29,10 +29,17 @@ class DatabaseSeeder extends Seeder
             FamilySeeder::class,
             UserSeeder::class,
             OptionSeeder::class,
+            ColorSeeder::class,
+            SizeSeeder::class,
 
         ]);
 
         Product::factory(150)->create();
 
+        $this->call([
+            ProductVariantSeeder::class,
+            ImageSeeder::class,
+
+        ]);
     }
 }

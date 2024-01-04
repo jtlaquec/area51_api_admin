@@ -71,20 +71,6 @@ class OptionSeeder extends Seeder
                     ],
                 ],
             ],
-            [
-                'name' => 'Sexo',
-                'type' => 1,
-                'features' => [
-                    [
-                        'value' => 'M',
-                        'description' => 'Masculino',
-                    ],
-                    [
-                        'value' => 'F',
-                        'description' => 'Femenino',
-                    ],
-                ],
-            ],
         ];
 
 

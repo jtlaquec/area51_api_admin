@@ -22,15 +22,20 @@ class Product extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
-    public function variants(){
+/*      public function variants(){
         return $this->hasmany(Variant::class);
-    }
+    } */
 
-    public function options(){
+/*     public function options(){
         return $this->belongsToMany(Option::class)
             ->using(OptionProduct::class)
             ->withPivot('features')
             ->withTimestamps();
+    } */
+
+    public function productvariants(){
+        return $this->hasmany(ProductVariant::class);
     }
+
 
 }

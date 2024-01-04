@@ -13,6 +13,7 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'brand' => $this->brand,
             'price' => $this->price,
             'image_path' => Storage::url($this->image_path),
             'link' => url('api/products/' . $this->id),

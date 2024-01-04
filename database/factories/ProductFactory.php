@@ -30,6 +30,7 @@ class ProductFactory extends Factory
         return [
             'sku' => $this->faker->unique()->numberBetween(100000, 999999),
             'name' => $subcategory->name . ' ' . $this->faker->sentence(),
+            'brand' => 'Marca Chavito',
             'description' => $this->faker->text(200),
             'image_path' => $imagePath,
             'price' => $this->faker->randomFloat(2, 1, 1000),
