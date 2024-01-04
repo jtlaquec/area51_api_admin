@@ -57,6 +57,7 @@ class ProductDetailsResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'image_path' => Storage::url($this->image_path),
+            'product_details' => $this->product_details,
             'colors' => $variantsGroupedByColor,
         ];
     }

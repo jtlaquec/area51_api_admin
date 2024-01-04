@@ -26,6 +26,16 @@ class ProductFactory extends Factory
         $imageName = $randomNumber . '.jpg';
         $imagePath = 'products/' . $imageName;
 
+        $productDetails = [
+            'Características' => 'Car1',
+            'Tipo de tela' => 'Car2',
+            'Instrucciones de uso' => 'Car3',
+            'Clase' => 'Car4',
+            'Composición' => 'Car5',
+            'Tipo de manga' => 'Car6',
+            'Tipo de tejido' => 'Car7',
+            'Tipo de cuello' => 'Car8',
+        ];
 
         return [
             'sku' => $this->faker->unique()->numberBetween(100000, 999999),
@@ -35,6 +45,7 @@ class ProductFactory extends Factory
             'image_path' => $imagePath,
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'subcategory_id' => $subcategory->id,
+            'product_details' => json_encode($productDetails, JSON_UNESCAPED_UNICODE),
         ];
     }
 }

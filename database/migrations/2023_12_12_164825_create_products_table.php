@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('brand')->nullable();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->json('product_details')->nullable();
             $table->string('image_path')->nullable();
             $table->float('price');
 
