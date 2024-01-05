@@ -14,6 +14,7 @@ use App\Http\Resources\Api\ColorResource;
 use App\Http\Resources\Api\FamilyResource;
 use App\Http\Resources\Api\ProductResource;
 use App\Http\Resources\Api\SubcategoryResource;
+use App\Http\Resources\Api\ProductColorResource;
 
 class StoreController extends Controller
 {
@@ -57,6 +58,16 @@ class StoreController extends Controller
         try {
             $colors = Color::get();
             return ColorResource::collection($colors);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al obtener datos del color. Detalles: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function listarColoresPorProducto(Request $request, $idProduct)
+    {
+        try {
+            $product = Product::with('colors')->find($idProduct);
+            return new ProductColorResource($product);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al obtener datos del color. Detalles: ' . $e->getMessage()], 500);
         }
