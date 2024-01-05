@@ -15,6 +15,7 @@ use App\Http\Resources\Api\FamilyResource;
 use App\Http\Resources\Api\ProductResource;
 use App\Http\Resources\Api\SubcategoryResource;
 use App\Http\Resources\Api\ProductColorResource;
+use App\Http\Resources\Api\Subcategory2Resource;
 
 class StoreController extends Controller
 {
@@ -38,6 +39,16 @@ class StoreController extends Controller
         try {
             $subcategoria = Subcategory::with('products.colors')->findOrFail($subcategoriaId);
             return SubcategoryResource::make($subcategoria);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al obtener datos de subcategoría. Detalles: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function productosPorSubcategoria2(Request $request, $subcategoriaId)
+    {
+        try {
+            $subcategoria = Subcategory::with('products.colors')->findOrFail($subcategoriaId);
+            return Subcategory2Resource::make($subcategoria);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al obtener datos de subcategoría. Detalles: ' . $e->getMessage()], 500);
         }

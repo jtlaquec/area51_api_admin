@@ -34,6 +34,8 @@ Route::get('/store/search', [StoreController::class, 'search']);
 Route::get('/store/colors', [StoreController::class, 'listarColores']);
 Route::get('/store/sizes', [StoreController::class, 'listarTallas']);
 
+Route::get('/store/subcategoryOld/{subcategory}', [StoreController::class, 'productosPorSubcategoria2']);
+
 Route::get('/store/productColors/{idProduct}', [StoreController::class, 'listarColoresPorProducto']);
 
 Route::get('/locations', [LocationController::class, 'listarTodo']);
