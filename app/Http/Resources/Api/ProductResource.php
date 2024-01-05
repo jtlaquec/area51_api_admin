@@ -19,12 +19,7 @@ class ProductResource extends JsonResource
             'percentage_discount' => $this->percentage_discount,
             'image_path' => Storage::url($this->image_path),
             'link' => url('api/products/' . $this->id),
-            'colors' => $this->whenLoaded('colors') ? $this->colors->map(function($color) {
-                return [
-                    'value' => $color->value,
-                    'description' => $color->description
-                ];
-            }) : [],
+            'colors' => ColorResource::collection($this->colors),
         ];
     }
 }

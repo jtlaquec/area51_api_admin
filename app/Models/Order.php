@@ -13,12 +13,8 @@ class Order extends Model
         'datetime',
         'total',
         'reason',
-        'shipping_address',
         'state_id',
         'user_id',
-/*         'receipt_id',
-        'comment_id',
-        'payment_id', */
 
     ];
 
@@ -32,5 +28,21 @@ class Order extends Model
 
     public function order_details(){
         return $this->hasmany(OrderDetail::class);
+    }
+
+    public function payment_detail(){
+        return $this->hasmany(PaymentDetail::class);
+    }
+
+    public function shipping(){
+        return $this->belongsTo(Shipping::class);
+    }
+
+    public function comment(){
+        return $this->belongsTo(Comment::class);
+    }
+
+    public function receipt(){
+        return $this->belongsTo(Receipt::class);
     }
 }

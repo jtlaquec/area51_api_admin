@@ -5,7 +5,7 @@ namespace App\Http\Resources\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductVariantResource extends JsonResource
+class VariantResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,19 +15,17 @@ class ProductVariantResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            //Campos de la variante de producto
-            'id' => $this->id,
+            'product_variant_id' => $this->id,
+            'sku' => $this->sku,
             'name' => $this->name,
-            'stock' => $this->stock,
             'price' => $this->price,
-/*             'has_discount' => $this->has_discount,
-            'percentage_discount' => $this->percentage_discount, */
             'discount_price' => $this->discount_price,
+            'stock' => $this->stock,
             'link' => url('api/variants/' . $this->id),
-/*             'product_link' => url('api/products/' . $this->product_id), */
             'color' => new ColorResource($this->color),
             'size' => new SizeResource($this->size),
             'images' => ImageResource::collection($this->images),
+
         ];
     }
 }

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('province_id')->constrained();
             $table->foreignId('department_id')->constrained();
+            $table->decimal('shipping_cost',8,2)->nullable()->default(18);
+            $table->string('shipping_time')->nullable()->default('5 días');
             $table->timestamps();
         });
     }

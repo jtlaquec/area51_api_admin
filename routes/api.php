@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\StoreController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\LocationController;
@@ -61,3 +62,12 @@ Route::prefix('orders')->group(function () {
 
 
 Route::get('/orders/customer/{userId}', [OrderController::class, 'listarOrdenesPorCliente']);
+
+
+Route::prefix('payments')->group(function () {
+    Route::get('/', [PaymentController::class, 'index']);
+    Route::get('/{payment}', [PaymentController::class, 'show']);
+    Route::post('/', [PaymentController::class, 'store']);
+    Route::put('/{payment}', [PaymentController::class, 'update']);
+    Route::delete('/{payment}', [PaymentController::class, 'destroy']);
+});

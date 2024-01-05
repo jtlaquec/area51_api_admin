@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Serie extends Model
+class PaymentMethod extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'number',
+        'name',
     ];
-    public function receipts(){
-        return $this->hasmany(Receipt::class);
+
+    public function payments(){
+        return $this->hasmany(Payment::class);
     }
+
 }

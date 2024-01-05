@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class ProductVariant extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'product_id',
+        'color_id',
+        'size_id',
+        'sku',
+        'name',
+        'price',
+        'discount_price',
+        'percentage_discount',
+        'stock',
+        'slug',
+        'is_active',
+        'has_discount',
+    ];
 
     public function product(){
         return $this->belongsTo(Product::class);
@@ -27,5 +41,9 @@ class ProductVariant extends Model
 
     public function order_details(){
         return $this->hasmany(OrderDetail::class);
+    }
+
+    public function inventories(){
+        return $this->hasmany(Inventory::class);
     }
 }

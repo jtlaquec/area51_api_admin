@@ -35,6 +35,10 @@ class DatabaseSeeder extends Seeder
             ColorSeeder::class,
             SizeSeeder::class,
             StateSeeder::class,
+            PaymentMethodSeeder::class,
+            PaymentSeeder::class,
+            PaymentStateSeeder::class,
+            ShippingMethodSeeder::class,
 
         ]);
 

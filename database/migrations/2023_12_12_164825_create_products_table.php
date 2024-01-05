@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->json('product_details')->nullable();
             $table->string('image_path')->nullable();
-            $table->float('price');
+            $table->decimal('price',8,2);
 
             $table->foreignId('subcategory_id')
             ->constrained();

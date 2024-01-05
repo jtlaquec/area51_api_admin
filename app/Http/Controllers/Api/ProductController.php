@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         try {
-            $product = Product::with(['productvariants.color', 'productvariants.size'])
+            $product = Product::with(['productvariants'])
                               ->findOrFail($product->id);
 
             return ProductDetailsResource::make($product);

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_variant')->constrained()->onDelete('cascade');
+            $table->integer('quantity');
+            $table->integer('type');
+            $table->date('date');
             $table->timestamps();
         });
     }
