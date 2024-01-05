@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\ProductVariantController;
 
 /*
@@ -32,6 +33,9 @@ Route::get('/store/subcategory/{subcategory}', [StoreController::class, 'product
 Route::get('/store/search', [StoreController::class, 'search']);
 Route::get('/store/colors', [StoreController::class, 'listarColores']);
 Route::get('/store/sizes', [StoreController::class, 'listarTallas']);
+
+
+Route::get('/locations', [LocationController::class, 'listarTodo']);
 
 Route::get('/departments', [LocationController::class, 'listarDepartamentos']);
 Route::get('/provinces', [LocationController::class, 'listarProvincias']);
@@ -64,6 +68,7 @@ Route::prefix('orders')->group(function () {
 Route::get('/orders/customer/{userId}', [OrderController::class, 'listarOrdenesPorCliente']);
 
 
+
 Route::prefix('payments')->group(function () {
     Route::get('/', [PaymentController::class, 'index']);
     Route::get('/{payment}', [PaymentController::class, 'show']);
@@ -71,3 +76,5 @@ Route::prefix('payments')->group(function () {
     Route::put('/{payment}', [PaymentController::class, 'update']);
     Route::delete('/{payment}', [PaymentController::class, 'destroy']);
 });
+
+Route::get('/payment_methods', [PaymentMethodController::class, 'listarMetodosPago']);

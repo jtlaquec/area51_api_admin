@@ -13,6 +13,18 @@ use App\Http\Resources\Api\DepartmentResource;
 
 class LocationController extends Controller
 {
+
+    public function listarTodo(){
+        try {
+            $departments = Department::with('provinces','provinces.districts')->get();
+            return DepartmentResource::collection($departments);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al obtener datos del departamento. Detalles: ' . $e->getMessage()], 500);
+        }
+    }
+
+
+
     public function listarDepartamentos(Request $request)
     {
         try {

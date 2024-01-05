@@ -5,33 +5,41 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\PaymentDetail;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\Api\PaymentDetailResource;
 
 class PaymentController extends Controller
 {
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'payment_id' => 'required|exists:payments,id',
-            'order_id' => 'required|exists:orders,id',
-            'boucher' => 'required|image',
-            'date' => 'required|date',
-            'pay' => 'required|numeric',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'payment_id' => 'required|exists:payments,id',
+                'order_id' => 'required|exists:orders,id',
+                'boucher' => 'required|image',
+                'date' => 'required|date',
+                'pay' => 'required|numeric',
+            ]);
 
-        $validatedData['payment_state_id'] = 1;
+            $validatedData['payment_state_id'] = 1;
 
-        if ($request->hasFile('boucher')) {
-            $path = $request->file('boucher')->store('payments', 'public');
-            $validatedData['image_path'] = $path;
-        }
+            if ($request->hasFile('boucher')) {
+                $path = $request->file('boucher')->store('payments', 'public');
+                $validatedData['image_path'] = $path;
+            }
 
-        $paymentDetail = PaymentDetail::create($validatedData);
+            $paymentDetail = PaymentDetail::create($validatedData);
 
-        if ($paymentDetail) {
-            return new PaymentDetailResource($paymentDetail);
-        } else {
-            return response()->json(['message' => 'Fallo al momento de crear pago'], 500);
+            if ($paymentDetail) {
+                return response()->json([
+                    'data' => new PaymentDetailResource($paymentDetail),
+                    'message' => 'El pago se generó correctamente, espere la confirmación de pago.'
+                ], 201);
+            } else {
+                return response()->json(['message' => 'Fallo al momento de crear pago'], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al procesar el pago: ' . $e->getMessage()], 500);
         }
     }
 
@@ -43,6 +51,41 @@ class PaymentController extends Controller
             return new PaymentDetailResource($paymentDetail);
         } else {
             return response()->json(['message' => 'Detalle de pago no encontrado'], 404);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $validatedData = $request->validate([
+                'payment_id' => 'sometimes|exists:payments,id',
+                'boucher' => 'sometimes|image',
+                'date' => 'sometimes|date',
+            ]);
+
+            $paymentDetail = PaymentDetail::find($id);
+
+            if (!$paymentDetail) {
+                return response()->json(['message' => 'Detalle de pago no encontrado'], 404);
+            }
+
+            if ($request->hasFile('boucher')) {
+                if ($paymentDetail->image_path && Storage::disk('public')->exists($paymentDetail->image_path)) {
+                    Storage::disk('public')->delete($paymentDetail->image_path);
+                }
+
+                $path = $request->file('boucher')->store('payments', 'public');
+                $validatedData['image_path'] = $path;
+            }
+
+            $paymentDetail->update($validatedData);
+
+            return response()->json([
+                'data' => new PaymentDetailResource($paymentDetail),
+                'message' => 'El pago ha sido actualizado correctamente.'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al actualizar el pago: ' . $e->getMessage()], 500);
         }
     }
 }

@@ -27,9 +27,7 @@ class ProductDetailsResource extends JsonResource
             'image_path' => Storage::url($this->image_path),
             'product_details' => $this->product_details,
             'link' => url('api/products/' . $this->id),
-            // Asume que quieres mostrar variantes del producto
             'variants' => ProductVariantResource::collection($this->productvariants),
-            // ... puedes agregar más campos según necesites
         ];
     }
 }
