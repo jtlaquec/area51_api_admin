@@ -1,3 +1,15 @@
+## Solucionar problemas de visualización de imagenes (URL DE IMAGEN NO FUNCIONA)
+
+**1.- Eliminar la carpeta storage que se ubica dentro de la carpeta public:**
+
+    public\storage
+    
+**2.- Ejecuta el siguiente comando:**
+
+    php artisan storage:link
+
+Nos tiene que aparecer un acceso directo de nombre storage dentro de la carpeta public
+
 ## Pasos para ejecutar el API
 
 **1.- Crear una base de datos** (de preferencia usar como nombre "ecommerce")
