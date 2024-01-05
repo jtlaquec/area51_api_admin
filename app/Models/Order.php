@@ -38,9 +38,7 @@ class Order extends Model
         return $this->belongsTo(Shipping::class);
     }
 
-    public function comment(){
-        return $this->belongsTo(Comment::class);
-    }
+
 
     public function receipt(){
         return $this->belongsTo(Receipt::class);

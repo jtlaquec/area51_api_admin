@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained();
-            $table->foreignId('district_id')->constrained();
+            $table->foreignId('shipping_method')->constrained();
+            $table->foreignId('district_id')->nullable()->constrained()->default(NULL);
             $table->decimal('cost', 8, 2);
-            $table->date('estimated_delivery_date')->nullable()->default(NULL);;
-            $table->string('shipping_number')->nullable()->default(NULL);;
-            $table->string('shipping_code')->nullable()->default(NULL);;
-            $table->string('notes')->nullable()->default(NULL);;
+            $table->datetime('shipping_datetime')->nullable();
+            $table->date('estimated_delivery_date')->nullable()->default(NULL);
+            $table->string('shipping_number')->nullable()->default(NULL);
+            $table->string('shipping_code')->nullable()->default(NULL);
+            $table->string('notes')->nullable()->default(NULL);
             $table->timestamps();
         });
     }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\ShippingController;
 use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\ProductVariantController;
 
@@ -81,3 +82,10 @@ Route::prefix('payments')->group(function () {
 });
 
 Route::get('/payment_methods', [PaymentMethodController::class, 'listarMetodosPago']);
+
+Route::get('/shipping_methods', [ShippingController::class, 'listarMetodosEnvio']);
+
+Route::post('/shippings', [ShippingController::class, 'crearEnvio']);
+Route::put('/shippings/{id}', [ShippingController::class, 'editarEnvio']);
+
+Route::get('/shippings/{id}', [ShippingController::class, 'verEnvio']);

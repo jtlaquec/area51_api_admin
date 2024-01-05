@@ -43,5 +43,9 @@ class Product extends Model
                     ->distinct();
     }
 
+    public function comments(){
+        return $this->hasmany(Comment::class);
+    }
+
 
 }

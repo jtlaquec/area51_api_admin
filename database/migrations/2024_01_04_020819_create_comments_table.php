@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->string('comment');
             $table->integer('rating');
-            $table->string('response');
             $table->integer('status');
             $table->timestamps();
         });
