@@ -14,6 +14,8 @@ class OrderEdit extends Component
 
     public $state_id = '';
 
+    protected $listeners = ['save' => 'save'];
+
 
     public function mount ($order)
     {

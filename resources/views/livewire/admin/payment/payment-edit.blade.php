@@ -1,13 +1,13 @@
 <div>
     <x-label class="mb-2">
-        DATOS DE ENVÍO
+        DATOS DE PAGO
     </x-label>
 
 
 
-    @if ($order->shipping->count())
+    @if ($order->payment_detail->count())
 
-        @foreach ($order->shipping as $index => $shipp)
+        @foreach ($order->payment_detail as $index => $payment)
             <form wire:submit.prevent="save({{ $index }})">
 
                 <x-validation-errors class="mb-4" />
@@ -15,41 +15,106 @@
                 <div class="card">
                     <div class="mb-4 flex flex-wrap -mx-2">
                         <div class="px-2">
-                            <x-label for="method-{{ $index }}">Método de Envío</x-label>
+                            <x-label for="method-{{ $index }}" class="mb-2">Método de Pago</x-label>
                             <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
-                                value="{{ $shipp->shipping_method->name }}" disabled />
+                                value="{{ $payment->payment->payment_method->name }}" disabled />
                         </div>
 
-                        <div class="px-2" wire:key="shipping-cost-{{ $index }}">
-                            <x-label for="cost-{{ $index }}">Costo</x-label>
-                            <x-input wire:model.defer="shippings.{{ $index }}.cost" id="cost-{{ $index }}"
-                                class="w-full bg-gray-100" disabled />
+                        <div class="px-2">
+                            <x-label for="method-{{ $index }}" class="mb-2">Medio de Pago</x-label>
+                            <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
+                                value="{{ $payment->payment->name }}" disabled />
+                        </div>
+                    </div>
+
+                    <div class="mb-4 flex flex-wrap -mx-2">
+                        <div class="px-2">
+                            <x-label for="method-{{ $index }}" class="mb-2">Fecha de Pago</x-label>
+                            <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
+                                value="{{ $payment->date }}" disabled />
+                        </div>
+
+                        <div class="px-2">
+                            <x-label for="method-{{ $index }}" class="mb-2">Total</x-label>
+                            <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
+                                value="{{ $payment->pay }}" disabled />
+                        </div>
+
+                        <div class="px-2">
+                            <x-label for="method-{{ $index }}" class="mb-2">Boucher</x-label>
+                            <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
+                                value="{{ $payment->image_path }}" disabled />
+                        </div>
+                    </div>
+
+                    <div class="mb-4 flex flex-wrap -mx-2">
+                        <div class="px-2" >
+                            <x-label for="method-{{ $index }}" class="mb-2">Total</x-label>
+                            <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
+                                value="{{ $payment->pay }}" disabled />
+                        </div>
+
+
+                        <div class="px-2">
+                            <x-label for="state_id" class="mb-2">
+                                Estado
+                            </x-label>
+                            <x-select class="" wire:model.live="state_id">
+
+                                <option value="" disabled>
+                                    Seleccione una estado de orden
+                                </option>
+
+                                @foreach ($payment_states as $payment_state)
+                                    <option value="{{ $payment_state->id }}">
+                                        {{ $payment_state->name }}
+                                    </option>
+                                @endforeach
+                            </x-select>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <div class="mb-4 -mx-2">
+                        <div class="px-2">
+                            <x-label for="notes-{{ $index }}" class="mb-2">Observaciones</x-label>
+                            <x-textarea wire:model.defer="payment.{{ $index }}.notes"
+                                id="notes-{{ $index }}" class="w-full"
+                                placeholder="Ingrese alguna observación sobre el pago" />
                         </div>
                     </div>
 
 
-                    @if ($shipp->shipping_method->id != 1)
-                        <div class="mb-4 flex flex-wrap -mx-2">
+
+
+{{--                         <div class="mb-4 flex flex-wrap -mx-2">
                             <div class="px-2">
                                 <x-label for="department-{{ $index }}">Departamento</x-label>
                                 <x-input id="department-{{ $index }}" class="w-full bg-gray-100"
-                                    value="{{ $shipp->district->department->name }}" disabled />
+                                    value="{{ $payment->district->department->name }}" disabled />
                             </div>
 
                             <div class="px-2">
                                 <x-label for="province-{{ $index }}">Provincia</x-label>
                                 <x-input id="province-{{ $index }}" class="w-full bg-gray-100"
-                                    value="{{ $shipp->district->province->name }}" disabled />
+                                    value="{{ $payment->district->province->name }}" disabled />
                             </div>
 
                             <div class="px-2">
                                 <x-label for="district-{{ $index }}">Distrito</x-label>
                                 <x-input id="district-{{ $index }}" class="w-full bg-gray-100"
-                                    value="{{ $shipp->district->name }}" disabled />
+                                    value="{{ $payment->district->name }}" disabled />
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="mb-4 flex flex-wrap -mx-2">
+{{--                         <div class="mb-4 flex flex-wrap -mx-2">
                             <div class="px-2">
                                 <x-label for="shipping_number-{{ $index }}">Número de Orden</x-label>
                                 <x-input wire:model.defer="shippings.{{ $index }}.shipping_number"
@@ -71,21 +136,13 @@
                                     id="estimated_delivery_date-{{ $index }}" class="w-full"
                                     placeholder="Fecha Estimada" />
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="mb-4 -mx-2">
-                            <div class="px-2">
-                                <x-label for="notes-{{ $index }}">Observaciones</x-label>
-                                <x-textarea wire:model.defer="shippings.{{ $index }}.notes"
-                                    id="notes-{{ $index }}" class="w-full"
-                                    placeholder="Por favor ingrese alguna observación sobre el envío" />
-                            </div>
-                        </div>
+
 
                         <div class="flex justify-start">
                             <x-button type="button" onclick="confirmShippingEdit({{ $index }})" class="btn btn-warning">Editar Envío</x-button>
                         </div>
-                    @endif
 
 
 
@@ -106,7 +163,7 @@
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium"></span> No hay envíos programados para esta Orden
+                <span class="font-medium"></span> No hay pagos realizados para esta Orden
             </div>
         </div>
     @endif

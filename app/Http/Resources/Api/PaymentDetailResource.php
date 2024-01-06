@@ -22,6 +22,7 @@ class PaymentDetailResource extends JsonResource
             'pay' => $this->pay,
             'image_path' => Storage::url($this->image_path),
             'date' => $this->date,
+            'notes' => $this->notes,
             'link' => url('api/payments/' . $this->id),
             'payment' => new PaymentResource($this->payment),
             'payment_state' => new PaymentStateResource($this->payment_state),

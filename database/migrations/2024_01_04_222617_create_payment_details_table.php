@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('pay',8,2);
             $table->string('image_path');
             $table->date('date');
+            $table->string('notes')->nullable()->default(NULL);
             $table->foreignId('payment_state_id')->constrained();
             $table->timestamps();
         });
@@ -31,4 +32,3 @@ return new class extends Migration
         Schema::dropIfExists('payment_details');
     }
 };
-	

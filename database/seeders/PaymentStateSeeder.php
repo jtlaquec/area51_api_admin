@@ -15,13 +15,13 @@ class PaymentStateSeeder extends Seeder
     {
         $states = [
             [
-                'name' => 'PENDIENTE',
+                'name' => 'Pendiente',
             ],
             [
-                'name' => 'VERIFICADO',
+                'name' => 'Verificado',
             ],
             [
-                'name' => 'RECHAZADO',
+                'name' => 'Rechazado',
             ],
 
         ];

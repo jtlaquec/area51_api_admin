@@ -21,5 +21,9 @@
     @livewire('admin.shipping.shipping-edit', ['order' => $order], key('shipping-edit-' . $order->id))
 </div>
 
+<div class="mb-12">
+    @livewire('admin.payment.payment-edit', ['order' => $order], key('payment-edit-' . $order->id))
+</div>
+
 
 </x-admin-layout>

@@ -16,7 +16,6 @@ class ShippingEdit extends Component
     {
 
         $this->order = $order;
-        // Cargar los envíos existentes
         foreach ($order->shipping as $index => $shipp) {
             $this->shippings[$index] = [
                 'cost' => $shipp->cost,
@@ -24,7 +23,6 @@ class ShippingEdit extends Component
                 'shipping_number' => $shipp->shipping_number,
                 'shipping_code' => $shipp->shipping_code,
                 'notes' => $shipp->notes,
-                // ... otros campos que desees
             ];
         }
     }
@@ -34,7 +32,6 @@ class ShippingEdit extends Component
         $shipping = $this->order->shipping->get($index) ?? null;
         if ($shipping) {
             $validatedData = $this->validate([
-                "shippings.$index.cost" => 'required|numeric',
                 "shippings.$index.estimated_delivery_date" => 'required|date',
                 "shippings.$index.shipping_number" => 'sometimes',
                 "shippings.$index.shipping_code" => 'sometimes',
@@ -50,9 +47,6 @@ class ShippingEdit extends Component
             ]);
         }
     }
-
-
-
 
     public function render()
     {
