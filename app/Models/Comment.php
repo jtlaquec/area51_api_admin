@@ -12,7 +12,7 @@ class Comment extends Model
     protected $fillable = [
         'comment',
         'rating',
-        'response',
+        'name',
         'status',
     ];
 

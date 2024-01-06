@@ -27,6 +27,7 @@ class ProductDetailsResource extends JsonResource
             'image_path' => Storage::url($this->image_path),
             'product_details' => $this->product_details,
             'link' => url('api/products/' . $this->id),
+            'comments' => CommentResource::collection($this->comments),
             'variants' => ProductVariantResource::collection($this->productvariants),
         ];
     }

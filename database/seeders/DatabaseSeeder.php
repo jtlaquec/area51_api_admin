@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -43,6 +44,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::factory(150)->create();
+        Comment::factory(150)->create();
 
         $this->call([
             ProductVariantSeeder::class,

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\StoreController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
@@ -71,7 +72,13 @@ Route::prefix('orders')->group(function () {
 
 Route::get('/orders/customer/{userId}', [OrderController::class, 'listarOrdenesPorCliente']);
 
-
+Route::prefix('comments')->group(function () {
+    Route::get('/', [CommentController::class, 'index']);
+    Route::get('/{comment}', [CommentController::class, 'show']);
+    Route::post('/', [CommentController::class, 'store']);
+    Route::put('/{comment}', [CommentController::class, 'update']);
+    Route::delete('/{comment}', [CommentController::class, 'destroy']);
+});
 
 Route::prefix('payments')->group(function () {
     Route::get('/', [PaymentController::class, 'index']);
