@@ -29,14 +29,14 @@ class ShippingController extends Controller
         try {
             $validatedData = $request->validate([
                 'order_id' => 'required|exists:orders,id',
-                'shipping_method' => 'required|exists:shipping_methods,id',
+                'shipping_method_id' => 'required|exists:shipping_methods,id',
                 'district_id' => 'required|exists:districts,id',
             ]);
 
 
             $shipping = new Shipping();
 
-            if($validatedData['shipping_method'] == 1) {
+            if($validatedData['shipping_method_id'] == 1) {
                 $shipping->cost = 0;
                 $shipping->district_id = null;
             } else {
@@ -46,9 +46,9 @@ class ShippingController extends Controller
             }
 
             $shipping->order_id = $validatedData['order_id'];
-            $shipping->shipping_method = $validatedData['shipping_method'];
+            $shipping->shipping_method_id = $validatedData['shipping_method_id'];
             $shipping->shipping_datetime = Date::now();
-            $shipping->estimated_delivery_date = null;
+            $shipping->estimated_delivery_date = Date::now();
             $shipping->shipping_number = null;
             $shipping->shipping_code = null;
             $shipping->notes = null;
@@ -78,13 +78,13 @@ class ShippingController extends Controller
         try {
             $validatedData = $request->validate([
                 'order_id' => 'sometimes|exists:orders,id',
-                'shipping_method' => 'sometimes|exists:shipping_methods,id',
+                'shipping_method_id' => 'sometimes|exists:shipping_methods,id',
                 'district_id' => 'sometimes|exists:districts,id',
             ]);
 
             $shipping = Shipping::findOrFail($id);
 
-            if($validatedData['shipping_method'] == 1) {
+            if($validatedData['shipping_method_id'] == 1) {
                 $shipping->cost = 0;
                 $shipping->district_id = null;
             } else {
@@ -94,7 +94,7 @@ class ShippingController extends Controller
             }
 
             $shipping->order_id = $validatedData['order_id'];
-            $shipping->shipping_method = $validatedData['shipping_method'];
+            $shipping->shipping_method_id = $validatedData['shipping_method_id'];
             $shipping->save();
 
             $shippingResource = new ShippingResource($shipping);

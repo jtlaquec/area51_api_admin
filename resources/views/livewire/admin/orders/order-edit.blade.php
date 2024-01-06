@@ -21,19 +21,49 @@
                     <x-label for="order_number" class="mb-2">
                         Número de la Orden
                     </x-label>
-                    <x-input id="order_number" class="w-full" value="00000000000000" disabled />
+                    <x-input id="order_number" class="w-full" value="{{ $order->number }}" disabled />
                 </div>
 
                 <div class="px-2">
                     <x-label for="order_datetime" class="mb-2">
-                        Fecha y Hora
+                        Fecha y Hora de Pedido
                     </x-label>
                     <x-input id="order_datetime" class="w-full" value="{{ $order->datetime }}" disabled />
                 </div>
 
+
             </div>
 
+
+            <div class="mb-4 flex flex-wrap -mx-2">
+
+                <div class="px-2">
+                    <x-label for="order_datetime" class="mb-2">
+                        DNI de Cliente
+                    </x-label>
+                    <x-input id="order_datetime" class="w-full" value="{{ $order->user->document }}" disabled />
+                </div>
+
+                <div class="px-2">
+                    <x-label for="order_datetime" class="mb-2">
+                        Celular
+                    </x-label>
+                    <x-input id="order_datetime" class="w-full" value="{{ $order->user->phone }}" disabled />
+                </div>
+
+                <div class="px-2">
+                    <x-label for="order_datetime" class="mb-2">
+                        Correo
+                    </x-label>
+                    <x-input id="order_datetime" class="w-full" value="{{ $order->user->email }}" disabled />
+                </div>
+
+            </div>
+
+
             <div class="mb-4">
+
+
                 <x-label class="mb-2">
                     Nombre del Cliente
                 </x-label>
@@ -50,7 +80,7 @@
                 </div>
 
                 <div class="px-2">
-                    <x-label for="order_number" class="mb-2">
+                    <x-label for="state_id" class="mb-2">
                         Estado
                     </x-label>
                         <x-select class="" wire:model.live="state_id">
@@ -83,41 +113,5 @@
         </div>
 
     </form>
-
-
-    <div class="card">
-        <div class="mb-4 flex flex-wrap -mx-2">
-            <div class="px-2">
-                <x-label for="order_id" class="mb-2">
-                    Método de Envío
-                </x-label>
-                <x-input id="order_id" class="w-full" value="{{ $order->shipping->id }}" disabled />
-            </div>
-
-            <div class="px-2">
-                <x-label for="order_number" class="mb-2">
-                    Número de la Orden
-                </x-label>
-                <x-input id="order_number" class="w-full" value="00000000000000" disabled />
-            </div>
-
-            <div class="px-2">
-                <x-label for="order_datetime" class="mb-2">
-                    Fecha y Hora
-                </x-label>
-                <x-input id="order_datetime" class="w-full" value="{{ $order->datetime }}" disabled />
-            </div>
-
-        </div>
-
-        <div class="mb-4">
-            <x-label class="mb-2">
-                Nombre del Cliente
-            </x-label>
-
-            <x-input id="order_client" class="w-full" value="{{ $order->user->name }}" disabled />
-        </div>
-
-    </div>
 
 </div>

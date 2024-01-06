@@ -24,6 +24,7 @@ class ShippingResource extends JsonResource
             'shipping_number' => $this->shipping_number,
             'shipping_code' => $this->shipping_code,
             'notes' => $this->notes,
+            'shipping_method' => new ShippingMethodResource($this->shipping_method),
         ];
     }
 }

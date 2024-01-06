@@ -5,7 +5,7 @@ namespace App\Http\Resources\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PaymentResource extends JsonResource
+class PaymentMethod2Resource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,6 @@ class PaymentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            /* 'payment_method' => new PaymentMethod2Resource($this->payment_method), */
-
         ];
     }
 }

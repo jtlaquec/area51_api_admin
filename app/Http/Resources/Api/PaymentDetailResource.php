@@ -23,7 +23,9 @@ class PaymentDetailResource extends JsonResource
             'image_path' => Storage::url($this->image_path),
             'date' => $this->date,
             'link' => url('api/payments/' . $this->id),
+            'payment' => new PaymentResource($this->payment),
             'payment_state' => new PaymentStateResource($this->payment_state),
+
         ];
     }
 }

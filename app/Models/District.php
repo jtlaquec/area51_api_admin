@@ -26,4 +26,10 @@ class District extends Model
     public function users(){
         return $this->hasmany(User::class);
     }
+
+    public function shippings(){
+        return $this->hasmany(Shipping::class);
+    }
+
+
 }

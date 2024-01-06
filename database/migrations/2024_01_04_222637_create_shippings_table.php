@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained();
-            $table->foreignId('shipping_method')->constrained();
+            $table->foreignId('shipping_method_id')->constrained();
             $table->foreignId('district_id')->nullable()->constrained()->default(NULL);
             $table->decimal('cost', 8, 2);
             $table->datetime('shipping_datetime')->nullable();

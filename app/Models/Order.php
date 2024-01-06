@@ -12,6 +12,7 @@ class Order extends Model
 
     protected $fillable = [
         'datetime',
+        'number',
         'total',
         'reason',
         'state_id',

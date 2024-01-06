@@ -14,6 +14,17 @@ class ShippingDetailsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'shipping_id' => $this->id,
+            'order_id' => $this->order_id,
+            'district_id' => $this->district_id,
+            'cost' => $this->cost,
+            'shipping_datetime' => $this->shipping_datetime,
+            'estimated_delivery_date' => $this->estimated_delivery_date,
+            'shipping_number' => $this->shipping_number,
+            'shipping_code' => $this->shipping_code,
+            'notes' => $this->notes,
+            'shipping_method' => new ShippingMethodResource($this->shipping_method),
+        ];
     }
 }

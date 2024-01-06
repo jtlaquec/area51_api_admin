@@ -60,6 +60,9 @@ class OrderController extends Controller
                 'shipping_address' => 'Recojo en tienda',
             ]);
 
+            $order->number = now()->year . '-' . $order->id;
+            $order->save();
+
             // Agregamos los detalles de la orden
             $this->createOrderDetails($order, $validatedData['items']);
 

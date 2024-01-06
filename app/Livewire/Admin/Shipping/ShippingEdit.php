@@ -2,27 +2,57 @@
 
 namespace App\Livewire\Admin\Shipping;
 
-use App\Models\State;
 use Livewire\Component;
 
 class ShippingEdit extends Component
 {
 
-/*     public $order;
+    public $order;
 
-    public $states;
+    public $shippings = [];
 
-    public $state_id = '';
 
     public function mount ($order)
     {
 
-        $this->states = State::all();
+        $this->order = $order;
+        // Cargar los envíos existentes
+        foreach ($order->shipping as $index => $shipp) {
+            $this->shippings[$index] = [
+                'cost' => $shipp->cost,
+                'estimated_delivery_date' => $shipp->estimated_delivery_date,
+                'shipping_number' => $shipp->shipping_number,
+                'shipping_code' => $shipp->shipping_code,
+                'notes' => $shipp->notes,
+                // ... otros campos que desees
+            ];
+        }
+    }
 
-        $this->state_id = $order->state_id;
+    public function save($index)
+    {
+        $shipping = $this->order->shipping->get($index) ?? null;
+        if ($shipping) {
+            $validatedData = $this->validate([
+                "shippings.$index.cost" => 'required|numeric',
+                "shippings.$index.estimated_delivery_date" => 'required|date',
+                "shippings.$index.shipping_number" => 'sometimes',
+                "shippings.$index.shipping_code" => 'sometimes',
+                "shippings.$index.notes" => 'sometimes',
+            ])['shippings'][$index];
+
+            $shipping->update($validatedData);
+
+            $this->dispatch('swal',[
+                'icon' => 'success',
+                'title' => '¡Bien hecho!',
+                'text' => 'Envio actualizado correctamente.',
+            ]);
+        }
+    }
 
 
-    } */
+
 
     public function render()
     {

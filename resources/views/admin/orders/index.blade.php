@@ -28,14 +28,18 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Número de Pedido
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Fecha y Hora
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Total
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Estado
+                            Estado del Pedido
                         </th>
+
                         <th scope="col" class="px-6 py-3">
                             Acciones
                         </th>
@@ -49,6 +53,9 @@
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $order->id }}
                             </th>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $order->number }}
+                            </td>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $order->datetime }}
                             </td>

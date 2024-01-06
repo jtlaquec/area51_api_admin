@@ -14,6 +14,7 @@ class Shipping extends Model
         'district_id',
         'cost',
         'estimated_delivery_date',
+        'shipping_method_id',
         'shipping_number',
         'shipping_code',
         'notes',
@@ -25,5 +26,9 @@ class Shipping extends Model
 
     public function shipping_method(){
         return $this->belongsTo(ShippingMethod::class);
+    }
+
+    public function district(){
+        return $this->belongsTo(District::class);
     }
 }

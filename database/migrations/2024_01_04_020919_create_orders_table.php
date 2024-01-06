@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->text('number')->nullable()->default(NULL);
             $table->datetime('datetime');
             $table->decimal('total', 8, 2);
             $table->text('reason');
