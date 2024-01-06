@@ -48,6 +48,14 @@
         ],
 
         [
+            //Familia de orders
+            'name' => 'Ordenes',
+            'icon' => 'fa-solid fa-box',
+            'route' => route('admin.orders.index'),
+            'active' => request()->routeIs('admin.orders.*')
+        ],
+
+        [
             //Familia de usuarios
             'name' => 'Usuarios',
             'icon' => 'fa-solid fa-box',

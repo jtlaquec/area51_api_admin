@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Shipping;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -35,10 +36,8 @@ class Order extends Model
     }
 
     public function shipping(){
-        return $this->belongsTo(Shipping::class);
+        return $this->hasmany(Shipping::class);
     }
-
-
 
     public function receipt(){
         return $this->belongsTo(Receipt::class);

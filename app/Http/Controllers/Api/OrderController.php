@@ -21,7 +21,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         try {
-            $orders = Order::with('order_details','state','payment_detail')->get();
+            $orders = Order::with('order_details','state','payment_detail','shipping')->get();
             return OrderResource::collection($orders);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al obtener la lista de órdenes. Detalles: ' . $e->getMessage()], 500);
@@ -129,7 +129,7 @@ class OrderController extends Controller
     {
         try {
 
-            $order = Order::with('order_details','state','payment_detail')->findOrFail($id);
+            $order = Order::with('order_details','state','payment_detail','shipping')->findOrFail($id);
 
             return new OrderResource($order);
         } catch (ModelNotFoundException $e) {
@@ -143,7 +143,7 @@ class OrderController extends Controller
     public function listarOrdenesPorCliente($userId)
     {
         try {
-            $orders = Order::with('order_details','state','payment_detail')->where('user_id', $userId)->get();
+            $orders = Order::with('order_details','state','payment_detail','shipping')->where('user_id', $userId)->get();
 
             return OrderResource::collection($orders);
         } catch (\Exception $e) {

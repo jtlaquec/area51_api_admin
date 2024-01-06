@@ -25,6 +25,7 @@ class OrderResource extends JsonResource
             'shipping_address' => $this->shipping_address,
             'state' => new StateResource($this->state),
             /* 'payment_detail' => new PaymentDetailResource($this->payment_detail), */
+            'shipping_details' => ShippingDetailsResource::collection($this->whenLoaded('shipping')),
             'payment_detail' => PaymentDetailResource::collection($this->whenLoaded('payment_detail')),
             'order_details' => OrderDetailsResource::collection($this->whenLoaded('order_details')),
         ];
