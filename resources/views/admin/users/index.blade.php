@@ -54,7 +54,7 @@
                             </td>
                             <td class="px-6 py-4">
                             {{-- <td class="px-6 py-4"> --}}
-                                <a href="{{ route('admin.users.edit', $user) }}">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     Editar
                                 </a>
                             </td>
