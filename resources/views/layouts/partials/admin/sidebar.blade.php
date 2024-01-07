@@ -7,12 +7,20 @@
             'active' => request()->routeIs('admin.dashboard')
         ],
 
-        [
+/*         [
             //Opciones
             'name' => 'Opciones',
             'icon' => 'fa-solid fa-cog',
             'route' => route('admin.options.index'),
             'active' => request()->routeIs('admin.options.*')
+        ], */
+
+        [
+            //Opciones
+            'name' => 'Colores y Tallas',
+            'icon' => 'fa-solid fa-cog',
+            'route' => route('admin.features.index'),
+            'active' => request()->routeIs('admin.features.*')
         ],
 
         [

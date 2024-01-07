@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DepartmentController;
@@ -29,3 +30,5 @@ Route::resource('users', UserController::class);
 Route::resource('orders', OrderController::class);
 
 Route::resource('departments', DepartmentController::class);
+
+Route::get('/features', [FeatureController::class, 'index'])->name('features.index');
