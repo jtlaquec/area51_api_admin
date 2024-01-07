@@ -10,7 +10,7 @@
 
 <x-slot name="action">
     <a class="btn btn-blue" href="{{ route('admin.categories.create') }}">
-        Nuevo
+        Añadir Categoría
     </a>
 </x-slot>
 

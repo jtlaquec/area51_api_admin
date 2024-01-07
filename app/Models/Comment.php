@@ -14,6 +14,7 @@ class Comment extends Model
         'rating',
         'name',
         'status',
+        'response',
     ];
 
     public function product(){

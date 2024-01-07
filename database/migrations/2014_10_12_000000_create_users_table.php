@@ -18,14 +18,14 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone');
-            $table->text('address')->nullable();
+            $table->text('address')->nullable()->default(NULL);
             $table->string('document')->nullable();
-            $table->date('birth_date');
+            $table->date('birth_date')->nullable()->default(NULL);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->integer('status')->default(1);
-            $table->foreignId('district_id')->constrained()->nullable();
+            $table->foreignId('district_id')->nullable()->constrained()->default(NULL);
             $table->timestamps();
         });
     }

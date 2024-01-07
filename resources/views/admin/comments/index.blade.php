@@ -4,21 +4,18 @@
         'route' => route('admin.dashboard'),
     ],
     [
-        'name' => 'Usuarios',
+        'name' => 'Reseñas y Calificaciones',
     ],
 ]">
 
-    <x-slot name="action">
-        <a class="btn btn-blue" href="{{ route('admin.users.create') }}">
+{{--     <x-slot name="action">
+        <a class="btn btn-blue" href="{{ route('admin.comments.create') }}">
             Añadir Usuario
         </a>
 
-    </x-slot>
+    </x-slot> --}}
 
-
-
-
-    @if ($users->count())
+    @if ($comments->count())
 
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -31,10 +28,13 @@
                             Nombre
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Correo
+                            Producto
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Estado
+                            Calificación
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Respuesta
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Acciones
@@ -43,33 +43,45 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($users as $user)
+                    @foreach ($comments as $comment)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $user->id }}
+                                {{ $comment->id }}
                             </th>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $user->name }}
+                                {{ $comment->name }}
+
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $user->email }}
+                                {{ $comment->product->name }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <div class="flex items-center">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <svg class="w-4 h-4 ms-1 {{ $i <= $comment->rating ? 'text-yellow-300' : 'text-gray-300 dark:text-gray-500' }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                        </svg>
+                                    @endfor
+                                </div>
                             </td>
 
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                @if ($user->status == 1)
 
-                                    Activo
+                                @if ($comment->response == null)
+
+                                    Sin respuesta
 
                                 @else
 
-                                    Desactivado
+                                    Respondido
 
                                 @endif
+
                             </td>
+
                             <td class="px-6 py-4">
-                            {{-- <td class="px-6 py-4"> --}}
-                                <a href="{{ route('admin.users.edit', $user) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                <a href="{{ route('admin.comments.edit', $comment) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     Editar
                                 </a>
                             </td>
@@ -90,7 +102,7 @@
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium">Info alert!</span> Todavia no hay usuarios de productos registradas
+                <span class="font-medium">Info alert!</span> Todavia no hay comentarios de los Usuarios
             </div>
         </div>
 
@@ -104,7 +116,7 @@
 
 
     <div class = "mt-4">
-        {{ $users->links() }}
+        {{ $comments->links() }}
     </div>
 
 

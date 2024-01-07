@@ -29,7 +29,7 @@
 
                         <div class="px-2">
                             <x-label for="date-{{ $index }}" class="mb-2">Fecha de Pago</x-label>
-                            <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
+                            <x-input type="date" id="method-{{ $index }}" class="w-full bg-gray-100"
                                 value="{{ $payment->date }}" disabled />
                         </div>
 
@@ -75,7 +75,7 @@
 
                     <div class="flex justify-start">
                         <x-button type="button" onclick="confirmPaymentEdit({{ $index }})"
-                            class="btn btn-warning">Editar Pago</x-button>
+                            class="btn btn-warning">Editar datos del Pago</x-button>
                     </div>
                 </div>
 

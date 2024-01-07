@@ -69,4 +69,13 @@ class User extends Authenticatable
     public function district(){
         return $this->belongsTo(District::class);
     }
+
+    public function orders(){
+        return $this->hasmany(Order::class);
+    }
+
+
+
+
+
 }

@@ -67,7 +67,7 @@
                             <div class="px-2">
                                 <x-label for="estimated_delivery_date-{{ $index }}" class="mb-2">Fecha estimada de
                                     envío</x-label>
-                                <x-input wire:model.defer="shippings.{{ $index }}.estimated_delivery_date"
+                                <x-input type="date" wire:model.defer="shippings.{{ $index }}.estimated_delivery_date"
                                     id="estimated_delivery_date-{{ $index }}" class="w-full"
                                     placeholder="Fecha Estimada" />
                             </div>
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="flex justify-start">
-                            <x-button type="button" onclick="confirmShippingEdit({{ $index }})" class="btn btn-warning">Editar Envío</x-button>
+                            <x-button type="button" onclick="confirmShippingEdit({{ $index }})" class="btn btn-warning">Editar Datos del Envío</x-button>
                         </div>
                     @endif
 

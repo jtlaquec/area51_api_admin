@@ -18,7 +18,7 @@
         [
             //Opciones
             'name' => 'Colores y Tallas',
-            'icon' => 'fa-solid fa-cog',
+            'icon' => 'fa-solid fa-palette',
             'route' => route('admin.features.index'),
             'active' => request()->routeIs('admin.features.*')
         ],
@@ -26,7 +26,7 @@
         [
             //Familia de departamentos
             'name' => 'Costos de Envío',
-            'icon' => 'fa-solid fa-box',
+            'icon' => 'fa-solid fa-truck',
             'route' => route('admin.departments.index'),
             'active' => request()->routeIs('admin.departments.*')
         ],
@@ -66,7 +66,7 @@
         [
             //Familia de orders
             'name' => 'Ordenes',
-            'icon' => 'fa-solid fa-box',
+            'icon' => 'fa-solid fa-receipt',
             'route' => route('admin.orders.index'),
             'active' => request()->routeIs('admin.orders.*')
         ],
@@ -74,9 +74,17 @@
         [
             //Familia de usuarios
             'name' => 'Usuarios',
-            'icon' => 'fa-solid fa-box',
+            'icon' => 'fa-solid fa-user-friends',
             'route' => route('admin.users.index'),
             'active' => request()->routeIs('admin.users.*')
+        ],
+
+        [
+            //Comentarios
+            'name' => 'Reseñas y Calificaciones',
+            'icon' => 'fa-solid fa-comments',
+            'route' => route('admin.comments.index'),
+            'active' => request()->routeIs('admin.comments.*')
         ],
 
 

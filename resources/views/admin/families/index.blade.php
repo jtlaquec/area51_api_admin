@@ -10,7 +10,7 @@
 
     <x-slot name="action">
         <a class="btn btn-blue" href="{{ route('admin.families.create') }}">
-            Nuevo
+            Añadir Familia
         </a>
 
     </x-slot>

@@ -8,12 +8,6 @@
     ],
 ]">
 
-<x-slot name="action">
-    <a class="btn btn-blue" href="{{ route('admin.departments.create') }}">
-        Nuevo
-    </a>
-</x-slot>
-
 @if ($departments->count())
 
 <div class="relative overflow-x-auto">

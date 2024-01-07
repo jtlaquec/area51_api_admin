@@ -28,7 +28,7 @@
                     <x-label for="order_datetime" class="mb-2">
                         Fecha y Hora de Pedido
                     </x-label>
-                    <x-input id="order_datetime" class="w-full bg-gray-100" value="{{ $order->datetime }}" disabled />
+                    <x-input id="order_datetime" type="datetime-local" class="w-full bg-gray-100" value="{{ $order->datetime }}" disabled />
                 </div>
 
 
@@ -57,7 +57,7 @@
                     <x-label for="order_datetime" class="mb-2">
                         Correo
                     </x-label>
-                    <x-input id="order_datetime" class="w-full bg-gray-100" value="{{ $order->user->email }}"
+                    <x-input type="email" id="order_datetime" class="w-full bg-gray-100" value="{{ $order->user->email }}"
                         disabled />
                 </div>
 
@@ -110,7 +110,7 @@
             <div class="flex justify-between">
 
 
-                <x-button type="button" onclick="confirmOrderEdit()" class="">Actualizar Estado</x-button>
+                <x-button type="button" onclick="confirmOrderEdit()" class="">Actualizar Estado de la Orden</x-button>
 
                 <x-danger-button onclick="confirmOrderDelete()">
                     Eliminar Orden
