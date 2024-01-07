@@ -28,7 +28,7 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Número de Pedido
+                            Número de la Orden
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Cliente
@@ -38,7 +38,7 @@
                         </th>
 
                         <th scope="col" class="px-6 py-3">
-                            Estado del Pedido
+                            Estado de la Orden
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Total
@@ -75,7 +75,7 @@
                             </td>
                             <td class="px-6 py-4">
                             {{-- <td class="px-6 py-4"> --}}
-                                <a href="{{ route('admin.orders.edit', $order) }}">
+                                <a href="{{ route('admin.orders.edit', $order) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     Ver detalles
                                 </a>
                             </td>

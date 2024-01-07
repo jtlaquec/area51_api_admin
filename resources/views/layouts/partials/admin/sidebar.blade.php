@@ -16,6 +16,14 @@
         ],
 
         [
+            //Familia de departamentos
+            'name' => 'Costos de Envío',
+            'icon' => 'fa-solid fa-box',
+            'route' => route('admin.departments.index'),
+            'active' => request()->routeIs('admin.departments.*')
+        ],
+
+        [
             //Familia de productos
             'name' => 'Familias',
             'icon' => 'fa-solid fa-box-open',

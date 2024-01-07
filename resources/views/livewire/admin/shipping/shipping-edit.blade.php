@@ -1,6 +1,6 @@
 <div>
     <x-label class="mb-2">
-        DATOS DE ENVÍO
+        <div class="text-xl font-bold">DATOS DE ENVÍO</div>
     </x-label>
 
 
@@ -15,13 +15,13 @@
                 <div class="card">
                     <div class="mb-4 flex flex-wrap -mx-2">
                         <div class="px-2">
-                            <x-label for="method-{{ $index }}">Método de Envío</x-label>
+                            <x-label for="method-{{ $index }}" class="mb-2">Método de Envío</x-label>
                             <x-input id="method-{{ $index }}" class="w-full bg-gray-100"
                                 value="{{ $shipp->shipping_method->name }}" disabled />
                         </div>
 
                         <div class="px-2" wire:key="shipping-cost-{{ $index }}">
-                            <x-label for="cost-{{ $index }}">Costo</x-label>
+                            <x-label for="cost-{{ $index }}" class="mb-2">Costo</x-label>
                             <x-input wire:model.defer="shippings.{{ $index }}.cost" id="cost-{{ $index }}"
                                 class="w-full bg-gray-100" disabled />
                         </div>
@@ -31,19 +31,19 @@
                     @if ($shipp->shipping_method->id != 1)
                         <div class="mb-4 flex flex-wrap -mx-2">
                             <div class="px-2">
-                                <x-label for="department-{{ $index }}">Departamento</x-label>
+                                <x-label for="department-{{ $index }}" class="mb-2">Departamento</x-label>
                                 <x-input id="department-{{ $index }}" class="w-full bg-gray-100"
                                     value="{{ $shipp->district->department->name }}" disabled />
                             </div>
 
                             <div class="px-2">
-                                <x-label for="province-{{ $index }}">Provincia</x-label>
+                                <x-label for="province-{{ $index }}" class="mb-2">Provincia</x-label>
                                 <x-input id="province-{{ $index }}" class="w-full bg-gray-100"
                                     value="{{ $shipp->district->province->name }}" disabled />
                             </div>
 
                             <div class="px-2">
-                                <x-label for="district-{{ $index }}">Distrito</x-label>
+                                <x-label for="district-{{ $index }}" class="mb-2">Distrito</x-label>
                                 <x-input id="district-{{ $index }}" class="w-full bg-gray-100"
                                     value="{{ $shipp->district->name }}" disabled />
                             </div>
@@ -51,21 +51,21 @@
 
                         <div class="mb-4 flex flex-wrap -mx-2">
                             <div class="px-2">
-                                <x-label for="shipping_number-{{ $index }}">Número de Orden</x-label>
+                                <x-label for="shipping_number-{{ $index }}" class="mb-2">Número de Orden</x-label>
                                 <x-input wire:model.defer="shippings.{{ $index }}.shipping_number"
                                     id="shipping_number-{{ $index }}" class="w-full"
                                     placeholder="Número de Orden" />
                             </div>
 
                             <div class="px-2">
-                                <x-label for="shipping_code-{{ $index }}">Código de Orden</x-label>
+                                <x-label for="shipping_code-{{ $index }}" class="mb-2">Código de Orden</x-label>
                                 <x-input wire:model.defer="shippings.{{ $index }}.shipping_code"
                                     id="shipping_code-{{ $index }}" class="w-full"
                                     placeholder="Código de Orden" />
                             </div>
 
                             <div class="px-2">
-                                <x-label for="estimated_delivery_date-{{ $index }}">Fecha estimada de
+                                <x-label for="estimated_delivery_date-{{ $index }}" class="mb-2">Fecha estimada de
                                     envío</x-label>
                                 <x-input wire:model.defer="shippings.{{ $index }}.estimated_delivery_date"
                                     id="estimated_delivery_date-{{ $index }}" class="w-full"
@@ -75,10 +75,10 @@
 
                         <div class="mb-4 -mx-2">
                             <div class="px-2">
-                                <x-label for="notes-{{ $index }}">Observaciones</x-label>
+                                <x-label for="notes-{{ $index }}" class="mb-2">Observaciones</x-label>
                                 <x-textarea wire:model.defer="shippings.{{ $index }}.notes"
                                     id="notes-{{ $index }}" class="w-full"
-                                    placeholder="Por favor ingrese alguna observación sobre el envío" />
+                                    placeholder="Ingrese alguna observación sobre el envío" />
                             </div>
                         </div>
 

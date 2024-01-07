@@ -14,19 +14,27 @@ class OrderEdit extends Component
 
     public $state_id = '';
 
-    protected $listeners = ['save' => 'save'];
+    protected $listeners = ['save' => 'save', 'orderUpdated' => 'handleOrderUpdated'];
 
 
-    public function mount ($order)
+    public function mount($order)
     {
+        $this->order = $order;
 
         $this->states = State::all();
 
         $this->state_id = $order->state_id;
-
-
     }
 
+
+
+    public function handleOrderUpdated($orderId)
+    {
+        if ($this->order->id == $orderId) {
+            $this->order->refresh();
+            $this->state_id = $this->order->state_id;
+        }
+    }
 
     public function save()
     {
@@ -38,7 +46,7 @@ class OrderEdit extends Component
             'state_id' => $this->state_id,
         ]);
 
-        $this->dispatch('swal',[
+        $this->dispatch('swal', [
             'icon' => 'success',
             'title' => '¡Bien hecho!',
             'text' => 'Estado de Orden actualizada correctamente.',

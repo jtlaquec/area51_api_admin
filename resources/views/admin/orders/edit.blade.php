@@ -18,6 +18,10 @@
 </div>
 
 <div class="mb-12">
+    @livewire('admin.variant.variantOrder-edit', ['order' => $order], key('variantOrder-edit-' . $order->id))
+</div>
+
+<div class="mb-12">
     @livewire('admin.shipping.shipping-edit', ['order' => $order], key('shipping-edit-' . $order->id))
 </div>
 

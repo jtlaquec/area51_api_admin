@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payment_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('payment_id')->constrained();
-            $table->foreignId('order_id')->constrained();
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->decimal('pay',8,2);
             $table->string('image_path');
             $table->date('date');

@@ -1,8 +1,8 @@
 <div>
     <x-label class="mb-2">
-        ORDEN DE PRODUCTO
+        <div class="text-xl font-bold">ORDEN DEL PRODUCTO</div>
     </x-label>
-    <form wire:submit.prevent="save">
+    <form wire:submit.live="save">
 
         <x-validation-errors class="mb-4">
 
@@ -107,17 +107,25 @@
             </div>
 
 
-            <div class="flex justify-start">
+            <div class="flex justify-between">
 
 
                 <x-button type="button" onclick="confirmOrderEdit()" class="">Actualizar Estado</x-button>
 
-
+                <x-danger-button onclick="confirmOrderDelete()">
+                    Eliminar Orden
+                </x-danger-button>
 
 
             </div>
+
         </div>
 
+    </form>
+
+    <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" id="delete-formOrder">
+        @csrf
+        @method('DELETE')
     </form>
 
 
@@ -140,6 +148,25 @@
                     }
                 });
             }
+
+
+            function confirmOrderDelete() {
+            Swal.fire({
+                title: "¿Estas seguro de eliminar la orden?",
+                text: "¡No podrás revertir esto!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "¡Sí, borralo!",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-formOrder').submit();
+                }
+            });
+
+        }
         </script>
     @endpush
 

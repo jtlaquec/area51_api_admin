@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SubcategoryController;
 
 Route::get('/', function(){
@@ -26,3 +27,5 @@ Route::resource('users', UserController::class);
 
 
 Route::resource('orders', OrderController::class);
+
+Route::resource('departments', DepartmentController::class);

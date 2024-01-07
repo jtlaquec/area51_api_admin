@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Order;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
 use App\Models\PaymentDetail;
 use App\Http\Controllers\Controller;
@@ -18,8 +20,17 @@ class PaymentController extends Controller
                 'order_id' => 'required|exists:orders,id',
                 'boucher' => 'required|image',
                 'date' => 'required|date',
-                'pay' => 'required|numeric',
             ]);
+
+            $order = Order::find($validatedData['order_id']);
+            $shipping = Shipping::where('order_id', $validatedData['order_id'])->first();
+
+            if(!$order || !$shipping){
+                return response()->json(['message' => 'Orden o envío no encontrados'], 404);
+            }
+
+            $totalPay = $order->total + $shipping->cost;
+            $validatedData['pay'] = $totalPay;
 
             $validatedData['payment_state_id'] = 1;
 
@@ -42,6 +53,7 @@ class PaymentController extends Controller
             return response()->json(['message' => 'Error al procesar el pago: ' . $e->getMessage()], 500);
         }
     }
+
 
     public function show($id)
     {

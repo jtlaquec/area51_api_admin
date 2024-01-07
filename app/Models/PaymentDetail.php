@@ -14,6 +14,7 @@ class PaymentDetail extends Model
         'order_id',
         'image_path',
         'date',
+        'notes',
         'pay',
         'payment_state_id',
     ];
