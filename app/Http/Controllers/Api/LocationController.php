@@ -67,6 +67,18 @@ class LocationController extends Controller
         }
     }
 
+    public function listarProvinciasPorDepartamento2($departmentId)
+    {
+
+        try {
+            $provinces = Province::where('department_id', $departmentId)->get();
+            return ProvinceResource::collection($provinces);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al obtener datos del departamento. Detalles: ' . $e->getMessage()], 500);
+        }
+    }
+
+
     public function listarDistritosPorProvincia($provinceId)
     {
         try {

@@ -48,6 +48,10 @@ Route::get('/districts', [LocationController::class, 'listarDistritos']);
 Route::get('/departments/{department}/provinces', [LocationController::class, 'listarProvinciasPorDepartamento']);
 Route::get('/provinces/{province}/districts', [LocationController::class, 'listarDistritosPorProvincia']);
 
+Route::get('/provinces/{departmentId}', [LocationController::class, 'listarProvinciasPorDepartamento']);
+Route::get('/districts/{provinceId}', [LocationController::class, 'listarDistritosPorProvincia']);
+
+
 Route::prefix('customers')->group(function () {
     Route::get('/', [CustomerController::class, 'index']);
     Route::get('/{user}', [CustomerController::class, 'show']);
