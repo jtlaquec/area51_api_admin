@@ -13,7 +13,7 @@
 
 ]">
 
- <div class="mb-12">
+<div class="mb-12">
     @livewire('admin.products.product-edit', ['product' => $product], key('product-edit-' . $product->id))
 </div>
 
