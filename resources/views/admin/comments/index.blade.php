@@ -70,11 +70,11 @@
 
                                 @if ($comment->response == null)
 
-                                    Sin respuesta
+                                <span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">Sin Respuesta</span>
 
                                 @else
 
-                                    Respondido
+                                <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Respondido</span>
 
                                 @endif
 

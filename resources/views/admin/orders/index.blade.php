@@ -8,7 +8,7 @@
     ],
 ]">
 
-{{--     <x-slot name="action">
+    {{--     <x-slot name="action">
         <a class="btn btn-blue" href="{{ route('admin.orders.create') }}">
             Nuevo
         </a>
@@ -68,14 +68,37 @@
                             </td>
 
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $order->state->name }}
+
+
+                                @switch($order->state->id)
+                                    @case(4)
+                                        <span
+                                            class="bg-purple-100 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">{{ $order->state->name }}</span>
+                                    @break
+
+                                    @case(5)
+                                        <span
+                                            class="bg-green-100 text-green-800 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $order->state->name }}</span>
+                                    @break
+
+                                    @case(6)
+                                        <span
+                                            class="bg-red-100 text-red-800 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{{ $order->state->name }}</span>
+                                    @break
+
+                                    @default
+                                        <span
+                                            class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">{{ $order->state->name }}</span>
+                                @endswitch
+
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $order->total }}
                             </td>
                             <td class="px-6 py-4">
-                            {{-- <td class="px-6 py-4"> --}}
-                                <a href="{{ route('admin.orders.edit', $order) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                {{-- <td class="px-6 py-4"> --}}
+                                <a href="{{ route('admin.orders.edit', $order) }}"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     Ver detalles
                                 </a>
                             </td>
@@ -100,14 +123,7 @@
             </div>
         </div>
 
-
     @endif
-
-
-
-
-
-
 
     <div class = "mt-4">
         {{ $orders->links() }}
