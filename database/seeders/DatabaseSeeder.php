@@ -43,8 +43,8 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        Product::factory(150)->create();
-        Comment::factory(150)->create();
+        Product::factory(50)->create();
+        Comment::factory(30)->create();
 
         $this->call([
             ProductVariantSeeder::class,

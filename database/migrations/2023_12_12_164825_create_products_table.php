@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('sku');
-            $table->string('brand')->nullable();
+            $table->string('brand')->nullable()->default(NULL);
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->json('product_details')->nullable();
-            $table->string('image_path')->nullable();
-            $table->decimal('price',8,2);
+            $table->text('description')->nullable()->default(NULL);
+            $table->json('product_details')->nullable()->default(NULL);
+            $table->string('image_path')->nullable()->default(NULL);
+            $table->decimal('price',8,2)->nullable()->default(NULL);
 
             $table->foreignId('subcategory_id')
             ->constrained();
-            $table->integer('percentage_discount')->nullable();
+            $table->integer('percentage_discount')->nullable()->default(NULL);
             $table->boolean('has_discount')->default(false);
             $table->timestamps();
         });

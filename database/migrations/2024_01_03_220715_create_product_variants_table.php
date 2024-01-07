@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('discount_price', 8, 2)->nullable();
             $table->integer('percentage_discount')->nullable();
             $table->integer('stock')->default(0);
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable()->default(NULL);
             $table->boolean('is_active')->default(true);
             $table->boolean('has_discount')->default(false);
             $table->timestamps();

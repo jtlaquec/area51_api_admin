@@ -24,7 +24,8 @@ class ProductEdit extends Component
 
     public function mount ($product)
     {
-        $this->productEdit = $product->only('sku', 'name', 'description', 'image_path', 'price', 'subcategory_id');
+        $this->productEdit = $product->only('sku', 'name', 'brand', 'description', 'image_path', 'price', 'subcategory_id',
+        'percentage_discount', 'has_discount');
 
         $this->families = Family::all();
 
@@ -72,35 +73,71 @@ class ProductEdit extends Component
     }
 
 
-    public function store()
+    public function storeProduct()
     {
         $this->validate([
             'image' => 'nullable|image|max:1024',
             'productEdit.sku' => 'required|unique:products,sku,' . $this->product->id,
             'productEdit.name' => 'required|max:255',
+            'productEdit.brand' => 'required|max:255',
             'productEdit.description' => 'nullable',
-            'productEdit.price' => 'required|numeric|min:0',
+            'productEdit.has_discount' => 'required|boolean',
+            'productEdit.percentage_discount' => 'required',
             'productEdit.subcategory_id' => 'required|exists:subcategories,id',
         ],
         [
-            //Mensajes
+
         ],
         [
-            'image' => 'imagen',
+/*             'image' => 'imagen',
             'productEdit.sku' => 'código de producto (SKU)',
             'productEdit.name' => 'nombre',
             'productEdit.description' => 'descripción',
             'productEdit.price' => 'precio',
-            'productEdit.subcategory_id' => 'subcategoría',
+            'productEdit.subcategory_id' => 'subcategoría', */
         ]);
 
-        if ($this->image){
+        if ($this->image) {
             Storage::delete($this->productEdit['image_path']);
-
             $this->productEdit['image_path'] = $this->image->store('products');
         }
 
         $this->product->update($this->productEdit);
+
+
+
+        if ($this->productEdit['has_discount'] == 1) {
+            foreach ($this->product->productvariants as $variant) {
+                $variant->update([
+                    'discount_price' => ($variant->price * $this->product->percentage_discount) / 100,
+                    'name' => $this->product->name ." ". $variant->color->description. " ".$variant->size->value,
+                ]);
+            }
+        } else {
+            foreach ($this->product->productvariants as $variant) {
+                $variant->update([
+                    'discount_price' => $variant->price,
+                    'name' => $this->product->name ." ". $variant->color->description. " ".$variant->size->value,
+                ]);
+                $this->product->update([
+                    'percentage_discount' => 0,
+                ]);
+            }
+        }
+
+        $firstVariant = $this->product->productvariants->first();
+        if ($firstVariant) {
+            $this->product->update([
+                'price' => $firstVariant->discount_price,
+            ]);
+
+        }
+        else {
+            $this->product->update([
+                'price' => 0,
+            ]);
+
+        }
 
         session()->flash('swal', [
             'icon' => 'success',

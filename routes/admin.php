@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SubcategoryController;
@@ -36,3 +37,6 @@ Route::resource('departments', DepartmentController::class);
 
 Route::get('/features', [FeatureController::class, 'index'])->name('features.index');
 
+Route::resource('variants', VariantController::class);
+
+Route::delete('/variants/{id}', [UserController::class, 'delete'])->name('variants.delete');

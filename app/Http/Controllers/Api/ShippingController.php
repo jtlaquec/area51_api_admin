@@ -30,7 +30,7 @@ class ShippingController extends Controller
             $validatedData = $request->validate([
                 'order_id' => 'required|exists:orders,id',
                 'shipping_method_id' => 'required|exists:shipping_methods,id',
-                'district_id' => 'required|exists:districts,id',
+                'district_id' => 'sometimes|exists:districts,id',
             ]);
 
 
