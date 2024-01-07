@@ -73,7 +73,7 @@ class ProductCreate extends Component
     public function store()
     {
         $this->validate([
-            'image' => 'nullable|image|max:1024',
+            'image' => 'required|image|max:1024',
             'product.sku' => 'required|unique:products,sku',
             'product.name' => 'required|max:255',
             'product.description' => 'nullable',

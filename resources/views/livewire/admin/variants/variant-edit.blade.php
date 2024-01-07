@@ -15,8 +15,15 @@
             <div class="p-6">
 
                 <x-label class="mb-2">
-                    <div class="text-xl font-bold">{{ $var->name }}</div>
+                    <div class="text-xl font-bold">{{ $var->name }}
+                        <span class="inline-block h-6 w-6 shadow-lg rounded-full border-2 border-gray-300 mr-4"
+                            style="background-color:{{ $var->color->value }}">
+                        </span>
+                    </div>
+
                 </x-label>
+
+
 
                 <form wire:submit.prevent="saveVariant({{ $index }})">
 
@@ -84,9 +91,10 @@
 
                             <x-button type="button" onclick="confirmVariantEdit({{ $index }})"
                                 class="">Editar Variante</x-button>
-                                <x-button type="button" wire:click="openMovementsModal({{ $var->id }})" class="ml-2">
-                                    Ver Movimientos
-                                </x-button>
+                            <x-button type="button" wire:click="openMovementsModal({{ $var->id }})"
+                                class="ml-2">
+                                Ver Movimientos
+                            </x-button>
                             <x-danger-button type="button" onclick="confirmVariantDelete({{ $var->id }})"
                                 class="ml-2">
                                 Eliminar Variante
@@ -112,17 +120,61 @@
 
         <div>
 
+            <!-- Modal Agregar Nueva Variante -->
             <x-dialog-modal wire:model="showAddVariantModal">
                 <x-slot name="title">
-                    Agregar nueva opción
+                    Agregar Nueva Variante
                 </x-slot>
 
                 <x-slot name="content">
+                    <x-validation-errors class="mb-4" />
+
+                    <div class="mb-4">
+                        <x-label for="color_id" class="mb-2">Color</x-label>
+                        <x-select wire:model.defer="variant.color_id" id="color_id">
+                            <option value="">Seleccione un color</option>
+                            @foreach ($colors as $color)
+                                <option value="{{ $color->id }}">{{ $color->description }}</option>
+                            @endforeach
+                        </x-select>
+                    </div>
+
+                    <div class="mb-4">
+                        <x-label for="size_id" class="mb-2">Talla</x-label>
+                        <x-select wire:model.defer="variant.size_id" id="size_id">
+                            <option value="">Seleccione una talla</option>
+                            @foreach ($sizes as $size)
+                                <option value="{{ $size->id }}">{{ $size->value }}</option>
+                            @endforeach
+                        </x-select>
+                    </div>
+
+                    <div class="mb-4">
+                        <x-label for="sku" class="mb-2">SKU</x-label>
+                        <x-input wire:model.defer="variant.sku" id="sku" class="w-full" placeholder="SKU" />
+                    </div>
+                    <div class="mb-4">
+                        <x-label for="price" class="mb-2">Precio</x-label>
+                        <x-input wire:model.defer="variant.price" id="price" class="w-full" placeholder="Precio"
+                            type="number" />
+                    </div>
+                    <div class="mb-4">
+                        <x-label for="stock" class="mb-2">Stock</x-label>
+                        <x-input wire:model.defer="variant.stock" id="stock" class="w-full" placeholder="Stock"
+                            type="number" />
+                    </div>
                 </x-slot>
 
                 <x-slot name="footer">
+                    <x-danger-button type="button" wire:click="$set('showAddVariantModal', false)">
+                        Cancelar
+                    </x-danger-button>
+                    <x-button class="ml-2" type="button" wire:click="saveNewVariant">
+                        Guardar
+                    </x-button>
                 </x-slot>
             </x-dialog-modal>
+
 
 
             <x-dialog-modal wire:model="showMovementsModal">
@@ -131,25 +183,80 @@
                 </x-slot>
 
                 <x-slot name="content">
-                    <!-- Aquí itera sobre los order_details de la variante -->
-                    @if($currentVariant)
-                        @foreach($currentVariant->order_details as $detail)
-                            {{ $detail->order_id }}
-                            {{ $detail->price }}
-                        @endforeach
+
+
+                    @if ($currentVariant)
+
+
+
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-left rtl:text-right0">
+                                <thead class="bg-gray-50 ">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            N°
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Fecha y Hora
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            N° Orden
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Cantidad
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach ($currentVariant->order_details as $detail)
+                                        <tr class="bg-white border-b">
+                                            <td class="px-6 py-4">
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $detail->created_at }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <a href="{{ route('admin.orders.edit', $detail->order_id) }}"
+                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                                    target="_blank">
+                                                    {{ $detail->order->number }}
+                                                </a>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $detail->quantity }}
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="flex items-center p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                            role="alert">
+                            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                            </svg>
+                            <span class="sr-only">Info</span>
+                            <div>
+                                <span class="font-medium"></span> No hay movimientos para esta variante
+                            </div>
+                        </div>
+
+
                     @endif
+
+
                 </x-slot>
 
                 <x-slot name="footer">
-                    <!-- Botones o acciones para el footer del modal -->
                 </x-slot>
             </x-dialog-modal>
         </div>
-
-
-
-
-
     @else
         <div class="flex items-center p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
             role="alert">

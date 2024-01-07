@@ -27,7 +27,7 @@ class StoreController extends Controller
     public function index(Request $request)
     {
         try {
-            $families = Family::with('categories.subcategories')->get();
+            $families = Family::with('categories','categories.subcategories')->get();
             return FamilyResource::collection($families);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al obtener datos de familias. Detalles: ' . $e->getMessage()], 500);

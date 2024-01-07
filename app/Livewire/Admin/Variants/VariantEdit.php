@@ -22,7 +22,7 @@ class VariantEdit extends Component
 
     public $variants = [];
 
-    public $currentVariant;
+    public $currentVariant="";
 
     public $showAddVariantModal = false;
     public $showMovementsModal = false;
@@ -103,6 +103,55 @@ class VariantEdit extends Component
             ]);
         }
     }
+
+    public function saveNewVariant()
+    {
+        $validatedData = $this->validate([
+            'variant.color_id' => 'required|exists:colors,id',
+            'variant.size_id' => 'required|exists:sizes,id',
+            'variant.sku' => 'required|unique:product_variants,sku',
+            'variant.price' => 'required|numeric',
+            'variant.stock' => 'required|numeric',
+        ]);
+
+        $variantData = $validatedData['variant'];
+
+        $existingVariant = $this->product->productvariants()->where('color_id', $variantData['color_id'])
+                                         ->where('size_id', $variantData['size_id'])
+                                         ->first();
+
+        if (!$existingVariant) {
+            $color = Color::find($variantData['color_id']);
+            $size = Size::find($variantData['size_id']);
+            $variantData['name'] = "{$this->product->name} {$color->description} {$size->value}";
+
+            if ($this->product->has_discount) {
+                $variantData['discount_price'] = $variantData['price'] - ($variantData['price'] * $this->product->percentage_discount / 100);
+            } else {
+                $variantData['discount_price'] = $variantData['price'];
+            }
+
+            $variantData['product_id'] = $this->product->id;
+            $newVariant = ProductVariant::create($variantData);
+
+            $this->showAddVariantModal = false;
+            session()->flash('swal', [
+                'icon' => 'success',
+                'title' => '¡Bien hecho!',
+                'text' => 'Variante creada correctamente.',
+            ]);
+
+            return redirect()->route('admin.products.edit', $this->product);
+
+        } else {
+            $this->dispatch('swal', [
+                'icon' => 'error',
+                'title' => '¡Error!',
+                'text' => 'Ya existe una variante con la misma combinación de color y talla',
+            ]);
+        }
+    }
+
 
 
     public function openAddVariantModal()
