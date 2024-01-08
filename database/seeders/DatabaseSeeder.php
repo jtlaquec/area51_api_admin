@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,
             FamilySeeder::class,
             UserSeeder::class,
+            UserRolesSeeder::class,
             OptionSeeder::class,
             ColorSeeder::class,
             SizeSeeder::class,

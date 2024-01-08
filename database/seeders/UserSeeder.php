@@ -77,17 +77,6 @@ class UserSeeder extends Seeder
                 'address' => 'Tacna',
             ],
 
-            [
-                'name' => 'Cliente',
-                'email' => 'cliente@gmail.com',
-                'password' => Hash::make('12345678'),
-                'district_id' => 230101,
-                'phone' => '931451245',
-                'birth_date' => '2001-01-01',
-                'document' => '75010101',
-                'address' => 'av. siempre viva 123',
-            ],
-
         ];
 
         foreach ($users as $index => $userData) {

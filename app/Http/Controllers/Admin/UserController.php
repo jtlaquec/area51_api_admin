@@ -90,27 +90,37 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'document' => 'sometimes|string',
-            'email' => 'sometimes|email|unique:users,email,' . $user->id,
-            'phone' => 'sometimes|string',
-            'birth_date' => 'sometimes|date',
-            'role' => 'required|string|exists:roles,name',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'sometimes|string|max:255',
+                'document' => 'sometimes|string',
+                'email' => 'sometimes|email|unique:users,email,' . $user->id,
+                'phone' => 'sometimes|string',
+                'birth_date' => 'sometimes|date',
+                'role' => 'required|string|exists:roles,name',
+            ]);
 
-        $user->update($request->all());
+            $user->update($request->all());
+            $user->syncRoles($request->role);
 
-        $user->syncRoles($request->role);
+            session()->flash('swal', [
+                'icon' => 'success',
+                'title' => '¡Bien hecho!',
+                'text' => 'Usuario actualizado correctamente.',
+            ]);
+        } catch (\Exception $e) {
+            report($e);
 
-        session()->flash('swal', [
-            'icon' => 'success',
-            'title' => '¡Bien hecho!',
-            'text' => 'Usuario actualizado correctamente.',
-        ]);
+            session()->flash('swal', [
+                'icon' => 'error',
+                'title' => '¡Error!',
+                'text' => 'Ocurrió un error al actualizar el usuario. Por favor, inténtalo de nuevo.',
+            ]);
+        }
 
         return redirect()->route('admin.users.edit', $user);
     }
+
 
     /**
      * Remove the specified resource from storage.
