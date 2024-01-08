@@ -21,14 +21,21 @@ class UsersIndex extends Component
 
     public function render()
     {
-        $users = User::where('name', 'like', '%' . $this->search . '%')
-            ->orWhere('email', 'like', '%' . $this->search . '%')
-            ->orWhere('status', 'like', '%' . $this->search . '%')
+        $users = User::query()
+            ->where(function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                      ->orWhere('email', 'like', '%' . $this->search . '%')
+                      ->orWhere('status', 'like', '%' . $this->search . '%');
+            })
+            ->orWhereHas('roles', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
             ->paginate(10);
 
         return view('livewire.admin.users-index', [
             'users' => $users
         ]);
     }
+
 
 }

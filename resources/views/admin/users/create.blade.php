@@ -84,6 +84,16 @@
             </div>
 
             <div class="mb-4">
+                <x-label for="role" class="mb-2">Rol</x-label>
+                <select name="role" id="role" class="w-full rounded-md shadow-sm border-gray-300">
+                    <option value="" disabled selected>Seleccione un Rol</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-4">
                 <x-label class="mb-2">
                     Estado
                 </x-label>

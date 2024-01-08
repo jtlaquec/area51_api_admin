@@ -27,12 +27,18 @@
                     <th scope="col" class="px-6 py-3 text-left">
                         Correo
                     </th>
+
+                    <th scope="col" class="px-6 py-3">
+                        Rol
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         Estado
                     </th>
+                    @role('Administrador')
                     <th scope="col" class="px-6 py-3">
                         Acciones
                     </th>
+                    @endrole
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +57,14 @@
                         </td>
 
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            @forelse ($user->getRoleNames() as $roleName)
+                                {{ $roleName }}
+                            @empty
+                                No tiene rol
+                            @endforelse
+                        </td>
+
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             @if ($user->status == 1)
 
                             <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Activo</span>
@@ -61,12 +75,13 @@
 
                             @endif
                         </td>
+                        @role('Administrador')
                         <td class="px-6 py-4">
-                        {{-- <td class="px-6 py-4"> --}}
-                            <a href="{{ route('admin.users.edit', $user) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                Editar
-                            </a>
+                                <a href="{{ route('admin.users.edit', $user) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    Editar
+                                </a>
                         </td>
+                        @endrole
                     </tr>
                 @endforeach
 

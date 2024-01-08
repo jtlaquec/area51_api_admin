@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create',compact('roles'));
     }
 
     /**
@@ -43,6 +45,7 @@ class UserController extends Controller
             'birth_date' => 'required|date',
             'password' => 'required|string|min:6',
             'status' => 'required',
+            'role' => 'required|string|exists:roles,name',
         ]);
 
         $user = User::create([
@@ -54,6 +57,8 @@ class UserController extends Controller
             'birth_date' => $request->input('birth_date'),
             'document' => $request->input('document'),
         ]);
+
+        $user->assignRole($request->input('role'));
 
         session()->flash('swal', [
             'icon' => 'success',
@@ -76,7 +81,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -90,9 +96,12 @@ class UserController extends Controller
             'email' => 'sometimes|email|unique:users,email,' . $user->id,
             'phone' => 'sometimes|string',
             'birth_date' => 'sometimes|date',
+            'role' => 'required|string|exists:roles,name',
         ]);
 
         $user->update($request->all());
+
+        $user->syncRoles($request->role);
 
         session()->flash('swal', [
             'icon' => 'success',

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -14,6 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $roles = ['Administrador', 'Vendedor', 'Cliente'];
+        foreach ($roles as $roleName) {
+            Role::firstOrCreate(['name' => $roleName]);
+        }
+
+
         $users = [
 
             [
@@ -83,8 +90,17 @@ class UserSeeder extends Seeder
 
         ];
 
-        foreach ($users as $userData) {
-            User::create($userData);
+        foreach ($users as $index => $userData) {
+
+            $user = User::create($userData);
+            $role = Role::findByName($roles[$index % count($roles)]);
+            $user->assignRole($role);
         }
+
+
+        $clientRole = Role::firstOrCreate(['name' => 'Cliente']);
+        User::factory(20)->create()->each(function ($user) use ($clientRole) {
+            $user->assignRole($clientRole);
+        });
     }
 }

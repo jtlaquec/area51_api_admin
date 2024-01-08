@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +63,9 @@ class CustomerController extends Controller
                 'document' => $request->input('document'),
                 'address' => $request->input('address'),
             ]);
+
+            $clientRole = Role::firstOrCreate(['name' => 'Cliente']);
+            $user->assignRole($clientRole);
 
             $message = 'Cliente creado con éxito.';
             return response()->json(['data' => new CustomerResource($user), 'message' => $message], 201); // 201 Created
