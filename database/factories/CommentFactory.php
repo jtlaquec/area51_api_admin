@@ -18,7 +18,7 @@ class CommentFactory extends Factory
     {
         return [
             'product_id' => $this->faker->numberBetween(1, 150),
-            'user_id' => $this->faker->numberBetween(1, 5),
+            'user_id' => $this->faker->numberBetween(1, 20),
             'comment' => $this->faker->text,
             'rating' => $this->faker->numberBetween(1, 5),
             'status' => 1,

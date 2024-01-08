@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
@@ -44,6 +45,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::factory(150)->create();
+        User::factory(20)->create();
         Comment::factory(50)->create();
 
         $this->call([
