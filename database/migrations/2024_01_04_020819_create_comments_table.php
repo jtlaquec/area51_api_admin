@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
-            $table->string('name');
+            $table->foreignId('user_id')->constrained();
             $table->string('comment');
             $table->string('response')->nullable()->default(NULL);
             $table->integer('rating');

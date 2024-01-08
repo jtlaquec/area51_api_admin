@@ -20,8 +20,10 @@ class CommentsIndex extends Component
 
     public function render()
     {
-        $comments = Comment::where('name', 'like', '%' . $this->search . '%')
-            ->orWhereHas('product', function ($query) {
+        $comments = Comment::orWhereHas('product', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->orWhereHas('user', function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%');
             })
             ->orderBy('response', 'asc')

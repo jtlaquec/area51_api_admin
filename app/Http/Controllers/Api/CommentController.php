@@ -14,14 +14,14 @@ class CommentController extends Controller
         try {
             $validatedData = $request->validate([
                 'product_id' => 'required|exists:products,id',
-                'name' => 'required|string|max:255',
+                'user_id' => 'required|exists:users,id',
                 'comment' => 'required|string',
                 'rating' => 'required|integer|between:1,5',
             ]);
 
             $comment = new Comment();
             $comment->product_id = $validatedData['product_id'];
-            $comment->name = $validatedData['name'];
+            $comment->user_id = $validatedData['user_id'];
             $comment->comment = $validatedData['comment'];
             $comment->rating = $validatedData['rating'];
             $comment->status = 1;
@@ -43,7 +43,6 @@ class CommentController extends Controller
             }
 
             $validatedData = $request->validate([
-                'name' => 'sometimes|string|max:255',
                 'comment' => 'sometimes|string',
                 'rating' => 'sometimes|integer|between:1,5',
             ]);

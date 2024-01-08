@@ -8,7 +8,7 @@
         'route' => route('admin.comments.index'),
     ],
     [
-        'name' => $comment->name,
+        'name' => 'Comentario de '.$comment->user->name,
     ],
 ]">
 
@@ -56,7 +56,7 @@
                     Nombre del Cliente
                 </x-label>
                 <x-input class="w-full bg-gray-100" placeholder="Ingrese el nombre del Usuario" name="name"
-                    value="{{ $comment->name }}" disabled>
+                    value="{{ $comment->user->name }}" disabled>
                 </x-input>
             </div>
 
