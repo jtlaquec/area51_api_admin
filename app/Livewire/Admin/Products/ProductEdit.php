@@ -109,7 +109,7 @@ class ProductEdit extends Component
         if ($this->productEdit['has_discount'] == 1) {
             foreach ($this->product->productvariants as $variant) {
                 $variant->update([
-                    'discount_price' => ($variant->price * $this->product->percentage_discount) / 100,
+                    'discount_price' => $variant->price - ($variant->price * $this->product->percentage_discount) / 100,
                     'name' => $this->product->name ." ". $variant->color->description. " ".$variant->size->value,
                 ]);
             }

@@ -22,6 +22,9 @@
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3 text-left">
+                        DNI
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left">
                         Nombre del Usuario
                     </th>
                     <th scope="col" class="px-6 py-3 text-left">
@@ -49,6 +52,9 @@
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $user->id }}
                         </th>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                            {{ $user->document }}
+                        </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
                             {{ $user->name }}
                         </td>
