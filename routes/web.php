@@ -14,25 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    /* return view('admin.dashboard'); */
+    return redirect()->route('login');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        /* return view('dashboard'); */
-        return view('admin.dashboard');
-    })->name('dashboard');
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login')->middleware('guest');
 
-
-/*     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin');
- */
-
-
-});
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])
+    ->group(function () {
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+    });
