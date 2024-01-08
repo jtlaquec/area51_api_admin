@@ -15,9 +15,9 @@
                     </svg>
                 </button>
                 <a href="http://ecommerce.test/admin" class="flex ms-2 md:me-24">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
+                    <img src="http://ecommerce.test/storage/admin/logoAdmin.png" class="h-8 me-3" alt="Area 51 Login" />
                     <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Área 51 Store</span>
+                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"></span>
                 </a>
             </div>
             <div class="flex items-center">
