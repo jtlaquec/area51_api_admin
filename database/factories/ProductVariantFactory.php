@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -34,5 +35,14 @@ class ProductVariantFactory extends Factory
             'discount_price' => $discountPrice,
             'percentage_discount' => $percentageDiscount,
         ];
+
+
+    }
+    public function configure()
+    {
+        return $this->afterCreating(function ($variant) {
+            $images = Image::factory()->count(rand(1, 4))->make();
+            $variant->images()->saveMany($images);
+        });
     }
 }

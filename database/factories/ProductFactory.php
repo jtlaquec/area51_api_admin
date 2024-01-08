@@ -45,7 +45,8 @@ class ProductFactory extends Factory
             'name' => $subcategory->name . ' ' . $this->faker->sentence(),
             'brand' => $this->faker->text(10),
             'description' => $this->faker->text(200),
-            'image_path' => $imagePath,
+            /* 'image_path' => $imagePath, */
+            'image_path' => 'products/' . $this->faker->image('public/storage/products',640,480,null,false),
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'subcategory_id' => $subcategory->id,
             'product_details' => json_encode($productDetails, JSON_UNESCAPED_UNICODE),

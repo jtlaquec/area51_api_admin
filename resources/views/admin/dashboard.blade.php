@@ -15,6 +15,9 @@
                     <h2 class = "text-lg font-semibold">
                         Bienvenido, {{ auth()->user()->name }}
                     </h2>
+                    <h2 class = "text-lg font-semibold">
+                        {{ auth()->user()->getRoleNames() }}
+                    </h2>
 
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -33,11 +36,15 @@
         <div class = "bg-white rounded-lg shadow-lg p-6 flex items-center justify-center">
 
             <h2 class = "text-xl font-semibold">
-                Área 51 Store
+                Área 51 Store - Módulo Administrativo
             </h2>
-
         </div>
 
     </div>
+
+    <div class="card">
+
+    </div>
+
 
 </x-admin-layout>

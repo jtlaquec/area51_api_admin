@@ -22,7 +22,7 @@ class ProductVariantSeeder extends Seeder
 
         foreach ($products as $product) {
             // Número de variantes a crear por producto
-            $numVariants = rand(1, 5);
+            $numVariants = rand(1, 3);
 
             // Combinaciones de colores y tallas
             $allCombinations = [];
