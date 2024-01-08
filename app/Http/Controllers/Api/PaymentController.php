@@ -18,23 +18,23 @@ class PaymentController extends Controller
             $validatedData = $request->validate([
                 'payment_id' => 'required|exists:payments,id',
                 'order_id' => 'required|exists:orders,id',
-                'boucher' => 'required|image',
-                'date' => 'required|date',
+                'boucher' => $request->payment_id == 7 ? 'nullable' : 'required|image',
+                'date' => $request->payment_id == 7 ? 'nullable' : 'required|date',
             ]);
 
             $order = Order::find($validatedData['order_id']);
             $shipping = Shipping::where('order_id', $validatedData['order_id'])->first();
 
-            if(!$order || !$shipping){
+            if (!$order || !$shipping) {
                 return response()->json(['message' => 'Orden o envío no encontrados'], 404);
             }
 
-            $totalPay = $order->total + $shipping->cost;
+            $shippingCost = $request->payment_id == 7 ? 0 : $shipping->cost;
+            $totalPay = $order->total + $shippingCost;
             $validatedData['pay'] = $totalPay;
-
             $validatedData['payment_state_id'] = 1;
 
-            if ($request->hasFile('boucher')) {
+            if ($request->payment_id != 7 && $request->hasFile('boucher')) {
                 $path = $request->file('boucher')->store('payments', 'public');
                 $validatedData['image_path'] = $path;
             }

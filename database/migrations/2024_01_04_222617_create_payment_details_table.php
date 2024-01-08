@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('payment_id')->constrained();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->decimal('pay',8,2);
-            $table->string('image_path');
-            $table->date('date');
+            $table->string('image_path')->nullable()->default(null);
+            $table->date('date')->nullable()->default(null);;
             $table->string('notes')->nullable()->default(NULL);
             $table->foreignId('payment_state_id')->constrained();
             $table->timestamps();

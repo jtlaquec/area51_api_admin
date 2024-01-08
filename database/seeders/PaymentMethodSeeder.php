@@ -23,6 +23,9 @@ class PaymentMethodSeeder extends Seeder
             [
                 'name' => 'Efectivo',
             ],
+            [
+                'name' => 'Pago en Tienda',
+            ],
 
         ];
 

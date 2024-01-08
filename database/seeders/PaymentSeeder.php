@@ -62,6 +62,10 @@ class PaymentSeeder extends Seeder
             '(Pago Fuera de Tacna no tiene cargo)',
         ];
 
+        $pagoTienda = [
+            'Por favor acercarse a nuestra tienda en Galerias Solari Plaza S11 - 2005, Tacna',
+        ];
+
 
         $payments = [
             [
@@ -101,6 +105,13 @@ class PaymentSeeder extends Seeder
                 'name' => 'Efectivo Interbank',
                 'description' => json_encode($efectivo_interbank, JSON_UNESCAPED_UNICODE),
                 'image_logo' => 'payment_methods/efectivo_interbank.png',
+            ],
+
+            [
+                'payment_method_id' => 4,
+                'name' => 'Pago en Tienda',
+                'description' => json_encode($pagoTienda, JSON_UNESCAPED_UNICODE),
+                'image_logo' => 'payment_methods/pagoTienda.png',
             ],
 
         ];
