@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductVariantSeeder::class,
             ImageSeeder::class,
+            RecalculatePricesSeeder::class,
 
         ]);
     }

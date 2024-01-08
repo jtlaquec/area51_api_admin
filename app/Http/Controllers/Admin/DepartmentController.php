@@ -13,10 +13,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::with('provinces', 'provinces.districts')
+/*         $departments = Department::with('provinces', 'provinces.districts')
             ->orderBy('name','asc')
-            ->paginate(10);
-        return view('admin.departments.index', compact('departments'));
+            ->paginate(10); */
+        return view('admin.departments.index');
     }
 
     /**

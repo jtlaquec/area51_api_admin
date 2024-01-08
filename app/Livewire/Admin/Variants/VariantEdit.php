@@ -61,9 +61,9 @@ class VariantEdit extends Component
                 "variants.$index.color_id" => 'required|exists:colors,id',
                 "variants.$index.size_id" => 'required|exists:sizes,id',
                 "variants.$index.sku" => 'required|unique:product_variants,sku,' . $variant->id,
-                "variants.$index.price" => 'required|numeric',
-                "variants.$index.stock" => 'required|numeric',
-                "variants.$index.discount_price" => 'nullable|numeric'
+                "variants.$index.price" => 'required|numeric|min:0',
+                "variants.$index.stock" => 'required|integer|min:0',
+                "variants.$index.discount_price" => 'nullable|numeric|min:0',
             ])['variants'][$index];
 
             $existingVariant = $this->product->productvariants()
@@ -110,8 +110,8 @@ class VariantEdit extends Component
             'variant.color_id' => 'required|exists:colors,id',
             'variant.size_id' => 'required|exists:sizes,id',
             'variant.sku' => 'required|unique:product_variants,sku',
-            'variant.price' => 'required|numeric',
-            'variant.stock' => 'required|numeric',
+            'variant.price' => 'required|numeric|min:0',
+            'variant.stock' => 'required|integer|min:0',
         ]);
 
         $variantData = $validatedData['variant'];

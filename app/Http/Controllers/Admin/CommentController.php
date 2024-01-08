@@ -13,9 +13,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::orderBy('id', 'desc')
-            ->paginate(10);
-        return view('admin.comments.index', compact('comments'));
+/*         $comments = Comment::orderBy('id', 'desc')
+            ->paginate(10); */
+        return view('admin.comments.index');
     }
 
     /**

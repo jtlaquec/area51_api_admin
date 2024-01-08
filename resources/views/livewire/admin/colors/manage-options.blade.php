@@ -2,12 +2,7 @@
 
     <section class="rounded-lg bg-white shadow-lg">
 
-
-
-
-
-
-            <div class="space-y-6">
+        <div class="space-y-6">
 
                 <div class="p-6 rounded-lg border border-gray-200 relative" wire:key="">
 
@@ -63,7 +58,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <x-button class="justify-center">Agregar</x-button>
+                            <x-button class="justify-center">Agregar Color</x-button>
                         </div>
                     </form>
                 </div>

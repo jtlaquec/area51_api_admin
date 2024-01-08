@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="mb-2">
-                        <x-button class="justify-center">Agregar</x-button>
+                        <x-button class="justify-center">Agregar Talla</x-button>
                     </div>
                 </form>
             </div>
