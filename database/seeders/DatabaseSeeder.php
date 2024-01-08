@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             ProvinceSeeder::class,
             DistrictSeeder::class,
+            UpdateDistritcsSeeder::class,
             FamilySeeder::class,
             UserSeeder::class,
             UserRolesSeeder::class,
