@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -15,6 +16,7 @@ class ProductDetailsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $allSizes = Size::all();
         return [
             'id' => $this->id,
             'sku' => $this->sku,
@@ -28,7 +30,13 @@ class ProductDetailsResource extends JsonResource
             'product_details' => $this->product_details,
             'link' => url('api/products/' . $this->id),
             'comments' => CommentResource::collection($this->comments),
-            'variants' => ProductVariantResource::collection($this->productvariants),
+            /* 'colors' => Color2Resource::collection($this->colors), */
+
+            'colors' => $this->colors->map(function ($color) use ($allSizes) {
+                return new Color2Resource($color, $this->id, $allSizes);
+            }),
+
+            /* 'variants' => ProductVariantResource::collection($this->productvariants), */
         ];
     }
 }

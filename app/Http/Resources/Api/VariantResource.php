@@ -16,14 +16,15 @@ class VariantResource extends JsonResource
     {
         return [
             'product_variant_id' => $this->id,
+            'product_id' => $this->product_id,
             'sku' => $this->sku,
             'name' => $this->name,
             'price' => $this->price,
             'discount_price' => $this->discount_price,
             'stock' => $this->stock,
             'link' => url('api/variants/' . $this->id),
-            'color' => new ColorResource($this->color),
-            'size' => new SizeResource($this->size),
+/*             'color' => new ColorResource($this->color),
+            'size' => new SizeResource($this->size), */
             'images' => ImageResource::collection($this->images),
 
         ];

@@ -2,6 +2,12 @@
 /node_modules
 /public/build
 /public/hot
+/public/storage/products/
+/public/storage/variants/
+/public/storage/payments/
+/storage/app/public/variants/
+/storage/app/public/products/
+/storage/app/public/payments/
 /vendor
 .env.backup
 .env.production

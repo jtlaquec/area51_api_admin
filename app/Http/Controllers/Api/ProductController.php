@@ -39,10 +39,10 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         try {
-            $product = Product::with(['productvariants'])
+            $product = Product::with(['productvariants', 'colors', 'comments'])
                               ->findOrFail($product->id);
 
-            return ProductDetailsResource::make($product);
+            return new ProductDetailsResource($product);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al obtener datos de producto. Detalles: ' . $e->getMessage()], 500);
         }
