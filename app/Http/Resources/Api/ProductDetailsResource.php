@@ -32,11 +32,11 @@ class ProductDetailsResource extends JsonResource
             'comments' => CommentResource::collection($this->comments),
             /* 'colors' => Color2Resource::collection($this->colors), */
 
-            'colors' => $this->colors->map(function ($color) use ($allSizes) {
+/*             'colors' => $this->colors->map(function ($color) use ($allSizes) {
                 return new Color2Resource($color, $this->id, $allSizes);
-            }),
+            }), */
 
-            /* 'variants' => ProductVariantResource::collection($this->productvariants), */
+            'variants' => ProductVariantResource::collection($this->productvariants),
         ];
     }
 }
