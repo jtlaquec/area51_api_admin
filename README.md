@@ -30,8 +30,9 @@ Nos tiene que aparecer un acceso directo de nombre storage dentro de la carpeta 
 
 **5.- Desde la terminal de VSCode del proyecto ejecutar el siguiente comando que crea las tablas y agrega datos a la base de datos:**
 
+**EJECUTAR SOLO 1 VEZ**
     php artisan migrate:refresh --seed
-    
+**EJECUTAR SOLO 1 VEZ**
 Si hay algún error, contactar con Xavier.
 
 ## Pasos para ejecutar Módulo Administrativo
